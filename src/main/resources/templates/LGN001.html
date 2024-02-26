@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+	<title>Overtime Management System</title>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+	<link rel = "icon" href = "resources/DATLogo2.png"  type = "image/x-icon">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Google font Css -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&family=Roboto:ital,wght@0,300;0,400;1,100;1,300;1,400&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Raleway:wght@100;200;300;400;500;600;700&family=Roboto:ital,wght@0,300;0,400;1,100;1,300;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Font awesome  -->
+    <script src="https://kit.fontawesome.com/3f29b40511.js" crossorigin="anonymous"></script>
+
+    <!-- Custom CSS -->
+   <link rel="stylesheet" th:href="@{../css/mainCss.css}">
+   
+   <style>
+   
+   .language-box {
+	    border-radius: 15px;
+	    width: 130px;
+	    height: 32px;
+	    left: 25px;
+	    border: 1px solid #fff;
+	    cursor: pointer;
+	    color: #fff;
+	    position: relative;
+	    margin-bottom: 10px;
+	    background-color: #f4c613;
+	}
+	
+	.language-box:hover {
+	    border: 1px solid #000;
+	    background-color: #f4c613;
+	    color: #000;
+	    transition: all 0.5s ease-in-out;
+	}
+	
+	.language {
+	    text-align: center;
+	    position: relative;
+	    top: 3px;
+	    font-size: 16.3px;
+	    background-color: #f4c613;
+	    color:#000;
+	}
+   .navbar-header{
+   		margin-top:20px;
+   }
+   </style>
+</head>
+<body>
+	<main role="main">
+		<!-- Language-->
+        <div class="navbar-header">
+            
+            <div class="form-group">
+                <select class="form-control language-box" id="exampleFormControlSelect1">
+                    <option class="language">English</option>
+                    <option class="language">Myanmar</option>
+                    <option class="language">Japanese</option>
+                </select>
+            </div>
+        </div>
+		<div class="container mt-5">
+			<div class="row d-flex justify-content-center">
+				<div class="col-md-5 py-3">
+					<div>
+						<img src="../resources/DAT Logo.png" alt="dat-logo" style="width:180px; height:150px; margin-left:120px;"> 
+					</div>
+					<h3 style="margin-left:30px;">Overtime Management System</h3>
+					
+					<!--  <div th:if="${loginError}" class="alert alert-danger" role="alert">
+						Wrong username or password
+					</div>-->
+					
+					<div th:if = "${param.error}">
+						<p th:text = "${session.error}" th:unless = "${session == null}">
+						  [...]
+						</p>
+					</div>
+					<div th:if="${param.logout}">You have been logged out.</div>
+					<form th:action="@{/login}" method="post">
+						<div class="form-group">
+							<label for="username">Username</label>
+							<input type="text" name="username" id="username" class="form-control" placeholder="Enter User Name" required>
+						</div>
+						
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required>
+						</div>
+						
+						<button type="submit" class="btn btn-yellow btn-sm mt-3">Sign in</button>
+						<a href="#" th:href="@{/home}" class="btn btn-home btn-sm mt-3">Back</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+		integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+		crossorigin="anonymous"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+		integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+		crossorigin="anonymous"></script>
+
+	<!-- jquery.easing.1.3 js -->
+	<script type="text/javascript" th:src="@{/js/jquery.easing.1.3.js}"></script>
+	<!-- Custom JQuery -->
+	<script type="text/javascript" th:src="@{/js/index.js}"></script>
+</body>
+</html>

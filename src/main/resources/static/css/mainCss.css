@@ -1,0 +1,713 @@
+/* -------------Main setting--------------  */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background:transparent;
+    background-color: #f3f3f3;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Raleway", sans-serif;
+}
+
+* {
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 400px;
+}
+
+/* ------------- Button --------------  */
+
+.btn-general {
+    font-family: "Raleway", sans-serif;
+    border-radius: 28px;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0 6px;
+    padding: 12px 46px 12px 46px;
+    transition: all 0.5s;
+}
+
+.btn-home {
+    color: #000000;
+    font-size: 13px;
+    transition: all 0.5s;
+    padding:10px 20px;
+    margin-right:5px;
+}
+
+.btn-home:hover,
+.btn-home:focus {
+    color: #fff;
+    background-color: #a295ec;
+}
+
+.btn-open {
+    border: 1px solid #337ab7;
+    color: #fff;
+    font-size: 13px;
+    transition: all 0.5s;
+    padding:5px 10px;
+    background-color: #337ab7;
+    cursor:pointer;
+}
+
+.btn-open:hover,
+.btn-open:focus {
+    color: #fff;
+    border: 1px solid #a295ec;
+    background-color: #a295ec;
+}
+.btn-yellow {
+    background-color: #f4c613;
+    color: #fff;
+    font-size: 13px;
+    transition: all 0.5s;
+    padding:10px 20px;
+    margin-right:5px;
+}
+
+.btn-yellow:hover,
+.btn-yellow:focus {
+    color: #fff;
+    background-color: #42A6C0;
+}
+
+.btn-red {
+    border: 1px solid #fa2222;
+    background-color: #fa2222;
+    color: #fff;
+    font-size: 13px;
+    transition: all 0.5s;
+    padding:10px 20px;
+    margin-right:5px;
+}
+
+.btn-red:hover,
+.btn-red:focus {
+    color: #fa2222;
+    background-color: #fff;
+}
+
+.btn-back {
+    background-color: #f90e0e;
+    border: 1px solid #f90e0e;
+    border-radius: 0 0 0 10px;
+    color: #fff;
+    font-size: 15px;
+    transition: all 0.5s;
+}
+
+.btn-back:hover,
+.btn-back:focus {
+    color: #fff;
+    background-color: #fb3d3d;
+    border: 1px solid #fb3d3d;
+}
+
+.btn-blue {
+    border: 1px solid #1162ff;
+    background-color: #1162ff;
+    color: #fff;
+    font-size: 13px;
+    transition: all 0.5s;
+    padding:10px 20px;
+}
+
+.btn-blue:hover,
+.btn-blue:focus {
+    color: #fff;
+    background-color: #42A6C0;
+    border: 1px solid aqua;
+}
+
+/* ------------- pre loader Section --------------  */
+
+#preloader,
+#preloader2{
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+}
+
+#status,
+#status2{
+    background-image: url('../resources/preloader.gif');
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 45%;
+    top: 40%;
+    margin-left: -35px;
+    /* because of width and height are 70 px , status box want to move exactly center */
+    margin-top: -35px;
+}
+
+.button-group {
+    text-align: center;
+    margin-top: 50px;
+    width: 400px;
+}
+
+.button-group a{
+    margin-right: 10px;
+    padding:10px 20px;
+}
+
+/* ------------- Approval --------------  */
+
+.approval-black {
+    position: absolute;
+    right: 0px;
+    top: 0;
+}
+
+#approval{
+    display:flex;
+    flex-direction: row;
+    padding: 50px 0px 0px 70px;
+}
+
+#approval .container {
+    margin-top: 30px;
+}
+
+#approval .container h3{
+    margin:0 0 20px 30px;
+}
+
+.tableContainer {
+	color: #fff;
+    background-color: #485175;
+    border-radius: 15px;
+    width: 600px;
+    margin-top: 10px;
+}
+
+#approval .container table{
+    width: 400px;
+    margin-top: 20px;
+}
+
+#approval .container table td {
+    padding: 10px 0px 0px 40px;
+}
+
+.approved-list{
+    margin: 42px 0px 0px 70px;
+}
+
+.approved-list div {
+    margin: 30px 0;
+}
+
+.approved-list div span i {
+    color: rgb(5, 202, 5);
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.approved-list div span:last-child {
+    font-size: 18px;
+}
+
+.approve-button button{
+    margin-left:10px;
+}
+
+/* ------------- Report View --------------  */
+
+.report-black {
+    position: absolute;
+    right: 0px;
+    top: 0;
+}
+
+#approval .approvalContainer,
+#reportView .reportContainer {
+    margin-top: 20px;
+    width:85%;
+    background-color: white;
+    box-shadow: 0px 0px 10px 3px grey;
+    padding: 20px;
+}
+
+.reportContainer h5{
+    font-size: 100%;
+}
+
+.report-button-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.report-button-box h6{
+   font-size: 90%;
+}
+
+.report-button-box button{
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.report-table-container {
+    width: 100%;
+}
+
+.report-table-container .plan-first-table {
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background-color: #485175;
+}
+
+.report-table-container .plan-first-table:first-child {
+    color:#fff;
+    text-align: center;
+}
+
+#reportView table tr td {
+    margin: 0;
+    padding: 0;
+}
+
+#reportView .plan-table {
+    background: none;
+    margin: 0;
+}
+
+.ot-row {
+    background-color: #c5c4c4;
+    color: #000;
+}
+
+#reportView .plan-table-result {
+    background: none;
+    margin: 0;
+    color: #000;
+}
+
+.each-cell td {
+    border-right: 0.5px solid #fff;
+}
+
+.each-cell .date {
+    width: 130px;
+}
+
+.each-cell .hr {
+    width: 60px;
+}
+
+.each-cell .thr {
+    width: 40px;
+}
+
+.approval-data {
+    background: none;
+    margin: 50px 0;
+    width: 100%;
+}
+
+.approval-data table {
+    background: none;
+    margin-left: 5px;
+    height: 200px;
+}
+
+.approval-data .header-table {
+    color: #fff;
+}
+
+.office-use {
+    border-radius: 0;
+    width: 100%;
+}
+
+.office-use tr h6 {
+    padding: 20px;
+}
+
+.office-use table {
+    margin-left: 4px;
+    margin-bottom: 10px;
+    height: 100px;
+}
+
+.report-table-container h6 {
+    text-align: center;
+}
+
+/* ------------- Modal download pdf and excel --------------  */
+
+.pdf-and-excel {
+    text-align: center;
+}
+
+.pdf-and-excel img {
+    width: 90px;
+    height: 100px;
+    margin: 30px 30px;
+}
+
+/* ------------- header design Section --------------  */
+
+.home-box{
+    border-radius: 20px 0px 0px 20px;
+    position: absolute;
+    cursor: pointer;
+    left:0;
+    margin:30px 0 0 60px; 
+    z-index: 1;
+}
+.home-box a{
+    margin-right:30px;
+    cursor: pointer;
+}
+
+.home-box button{
+    cursor: pointer;
+}
+
+.profile{
+    padding:5px;
+    background-color: #337AB7;
+    border-radius: 100%;
+    border:none;
+    width:40px;
+    height:40px;
+}
+
+.home-box a i,
+.home-box button i{
+    font-size: 18px;
+    transition: all 1s ease-in-out;
+}
+.profile i{
+    color:#fff;
+}
+.home-box a i:hover,
+.home-box button i:hover{
+    transform: rotate(360deg);
+}
+
+.tabinator {
+    font-family: Open Sans;
+    padding:20px 0px 0px 0px;
+    display:flex;
+    position:relative;
+    top:0px;
+    width:fit-content;
+}
+
+.tabinator div{
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 10px 10px;
+    color: white;
+    margin-bottom: -3px;
+    margin-left: -1px;
+    transition:background 0.5s;
+    font-size:15px;
+}
+
+.tabinator div:hover {
+    cursor: pointer;
+    background: #FEE34F;
+}
+
+.tabinator div a:hover{
+	color: #000;
+}
+
+.tab1,
+.tab2,
+.tab3,
+.tab4,
+.tab5,
+.tab3-tm,
+.tab4-tm,
+.tab5-tm {
+    border-radius: 30px 30px 0 0;
+    height: 100px;
+    width: 140px;
+}
+
+.tab1 a,
+.tab2 a,
+.tab3 a,
+.tab4 a,
+.tab5 a,
+.tab3-tm a,
+.tab4-tm a,
+.tab5-tm a{
+    text-decoration: none;
+    color:#fff;
+    /* background-color: #1162ff; */
+    padding:25px 0px;
+    width:100px;
+}
+.tab1 {
+    z-index: 4;
+    position: relative;
+    right:-600px;
+    background-color: #5C6898;
+    text-align: center;
+}
+
+.tab2 {
+    z-index: 3;
+    position: relative;
+    right:-588px;
+    background-color:#42A6C0;
+    text-align: center;
+
+}
+
+.tab3 {
+    z-index: 2;
+    position: relative;
+    right:-576px;
+    background-color: #5C6898;
+    text-align: center;
+
+}
+
+.tab4 {
+    z-index: 1;
+    position: relative;
+    right:-564px;
+    background-color:#42A6C0;
+    text-align: center;
+
+}
+
+.tab5 {
+    z-index: 0;
+    position: relative;
+    right:-552px;
+    background-color:#5C6898;
+    text-align: center;
+
+}
+
+.tab3-tm {
+    z-index: 2;
+    position: relative;
+    right:-776px;
+    background-color: #5C6898;
+    text-align: center;
+
+}
+
+.tab4-tm {
+    z-index: 1;
+    position: relative;
+    right:-764px;
+    background-color:#42A6C0;
+    text-align: center;
+
+}
+
+.tab5-tm {
+    z-index: 0;
+    position: relative;
+    right:-752px;
+    background-color:#5C6898;
+    text-align: center;
+
+}
+
+/* ------------- first upload signature Section --------------  */
+#signature-container{
+    background-color: rgb(231, 231, 231);
+    width:100%;
+    height:100%;
+    z-index: 0;
+}
+.inside-sign-container{
+    width:400px;
+    padding:50px;
+    border-radius: 15px;
+    position:relative;
+    top:100px;
+    left:480px;
+    z-index: 1;
+    box-shadow:0px 0px 4px 6px #c7c7c7;
+    background-color: #fff;
+}
+
+.inside-sign-container h5{
+    font-size: 120%;
+}
+
+.inside-sign-container input{
+    padding:15px;
+    height:50px;
+}
+
+.inside-sign-container button,
+.inside-sign-container a{
+    margin-right: 5px;
+}
+
+.inside-sign-container h5,
+.inside-sign-container input,
+.inside-sign-container a,
+.inside-sign-container button{
+    margin-top:0px;
+}
+
+.modal-backdrop{
+    display:none;
+}
+
+.modal {
+    background-color: rgba(68, 65, 65,60%)
+}
+
+.modal-open {
+	padding-right:0;
+}
+
+.image-div img {
+    height: 100px;
+    margin: 10px 70px 10px 30px;
+}
+
+.form-group {
+    margin-bottom: 0px;
+}
+
+.pagination {
+	justify-content: center;
+	margin-bottom: 5px;
+}
+
+.download {
+	display: flex;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	background-color: transparent;
+}
+
+.download i {
+	align-self: flex-end;
+	font-size: 35px;
+	color: #1bc21b;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	transform-origin: bottom;
+}
+
+.bounce:hover {
+	animation-name: bounce;
+	animation-timing-function: ease;
+	color: #08e608;
+}
+
+/* User profile signature image */
+.profileSignature {
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	border: none;
+}
+
+@keyframes bounce {
+	0%   { transform: translateY(0); }
+	50%  { transform: translateY(-20px); }
+	100% { transform: translateY(0); }
+}
+/* Responsive Design Style */
+
+@media screen and (max-width: 650px) {
+    #content1,
+    #content2,
+    #content3,
+    #content4,
+    #content5 {
+        float: left;
+        display: none;
+        border-left: 1px solid #bbb;
+        padding: 10px;
+        height: 550px;
+        width: 550px;
+        border-radius: 20px;
+    }
+    
+    #tab1:checked~#content1,
+    #tab2:checked~#content2,
+    #tab3:checked~#content3,
+    #tab4:checked~#content4,
+    #tab5:checked~#content5 {
+        display: block;
+        border: 0;
+        z-index: 10;
+        position: relative;
+    }
+    
+    .tab1,
+    .tab2,
+    .tab3,
+    .tab4,
+    .tab5 {
+        position: relative;
+        background-color:#5C6898;
+        text-align: center;
+    }
+    
+    .tab1 {
+        z-index: 4;
+        position: relative;
+        bottom:-400px;
+        background-color: #5C6898;
+        text-align: center;
+    }
+    
+    .tab2 {
+        z-index: 3;
+        position: relative;
+        bottom:-388px;
+        background-color:#42A6C0;
+        text-align: center;
+    
+    }
+    
+    .tab3 {
+        position: relative;
+        background-color:#5C6898;
+        text-align: center;
+    }
+    
+    .tab4 {
+        z-index: 1;
+        position: relative;
+        bottom:-364px;
+        background-color:#42A6C0;
+        text-align: center;
+    
+    }
+    
+    .tab5 {
+        position: relative;
+        background-color:#5C6898;
+        text-align: center;
+    
+    }   
+}

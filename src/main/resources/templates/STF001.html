@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/main :: layout(~{::main})}">
+<head>
+</head>
+<body>
+<main role="main">
+    <!-- Pre loader -->
+    <div id="preloader2">
+        <div id="status2">&nbsp;</div>
+    </div>
+    <div id="inbox-page">
+        <div class="home-box">
+                    
+            <a th:href="@{/home}"><i class="fa-solid fa-house"></i></a>
+        
+            <a href="javascript: document.logoutForm.submit()"><i class="fa-solid fa-power-off"></i></a>
+            
+            <form name="logoutForm" method="post" th:action="@{/logout}" th:hidden="true">
+              	<input hidden type="submit" value="Sign Out">
+            </form>
+        </div>
+    </div>
+        <div class="tabinator">
+
+
+            <div class="tab1"><a th:href="@{/admin/dashboard}">Dashboard</a></div>
+
+
+            <div class="tab2" style="background-color: #D1D5FA;top:-12px;z-index: 5;"><a style="color:#000" th:href="@{/admin/teamMember}">Team Members</a></div>
+
+
+            <div class="tab3"><a th:href="@{/admin/management}">Management</a></div>
+
+
+            <div class="tab4"><a th:href="@{/admin/upload}">Upload Data</a></div>
+
+
+            <div class="tab5"><a th:href="@{/admin/insertData}">Insert Data</a></div>
+
+        </div>
+    <div id="content3" style="background-color:#D1D5FA">
+        
+        <table class="table-striped">
+            <tr>
+                <th>
+                    <p>No</p>
+                </th>
+                <th>
+                    <p>Project ID</p>
+                </th>
+                <th>
+                    <p>Name</p>
+                </th>
+                <th>
+                    <p>Staff ID</p>
+                </th>
+                <th>
+                    <p>Team</p>
+                </th>
+                <th>
+                    <p>Position</p>
+                </th>
+                <th>
+                    <p>Salary</p>
+                </th>
+                <th style="text-align:center;">
+					<div class="search-container">
+						<nav class="navbar">
+							<form class="form-inline formCom" th:action="@{/searchTeamMember}" method="post" th:object="${teamMemberBean}" style="text-align:right;">
+								<input class="form-control formInput" style="width:150px;" type="search" placeholder="Search" aria-label="Search" th:field="*{memberName}">
+								<button class="btn btn-search" type="submit"><i class="fa fa-magnifying-glass"></i></button>
+							</form>
+						</nav>
+					</div>
+				</th>
+            </tr>
+            <tr>
+				<div th:if="${message}!=null"
+					class="alert alert-warning alert-dismissible fade show"
+					role="alert">
+					<p>
+						<strong th:text="${message}"></strong>
+					</p>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</tr>
+            <tr class="style1" th:each="member : ${memberList}">
+                <td>
+                    <p th:utext="${memberStat.index+1}" />
+                </td>
+                <td>
+                    <p th:text="${member.memberProjectCode}" />
+                </td>
+                <td>
+                    <p th:text="${member.memberName}" />
+                </td>
+                <td>
+                    <p th:text="${member.memberStaffId}" />
+                </td>
+                <td>
+                    <p th:text="${member.memberTeamName}" />
+                </td>
+                <td>
+                    <p th:text="${member.memberPositionName}" />
+                </td>
+                <td>
+                    <p th:text="${member.memberSalary}" />
+                </td>
+                <td>
+                    <a th:href="@{findTeamMember/(id=${member.memberId})}" class="updatebtn memberEdit" style="padding-right:20px;">
+ 						 <i class="fa-solid fa-file-pen updatebtn"></i></a>
+					<a th:href="@{findTeamMember/(id=${member.memberId})}" class="updatebtn memberDelete">
+  						<i class="fa-solid fa-trash-can trashbtn"></i></a>
+  				</td>
+            </tr>
+         </table>
+    </div>	
+<!-- pagination -->
+<div class="pagination">
+	<ul class="nav nav-pills"
+		th:if="${message}=='Updated Successfully.' or ${message}=='Deleted Successfully.' 
+		or ${message}==null">
+		<li class="nav-item"
+			th:each="i : ${#numbers.sequence(0,memberList.totalPages-1)}"><a
+			th:href="@{/admin/teamMember(page=${i})}" th:text="${i+1}"
+			class="nav-link" th:classappend="${currentPage}==${i}?'active':''"></a>
+		</li>
+	</ul>
+</div>
+  						
+	<form th:action="@{/admin/teamMemberUpdate}" method="post" th:object="${teamMemberBean}">
+     <!-- Update Modal-->
+     <div class="myTeamMember">
+     <div class="modal fade" id="updateformTeamMember" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered" role="document" style="width: 500px;">
+             <div class="modal-content">
+                 <div class="modal-body">
+                         <h5 class="modal-title" id="approvaltitle">Update Team Member Staff</h5>
+                         <br>
+                         <div class="form-group row">
+                             <label for="memberName" class="col-sm-4 col-form-label text-center" id="memberNamelabel">Name -</label>
+                             <div class="col-sm-6">
+                             	<input type="hidden" id="memberId" name="memberId" value="" th:field="*{memberId}"/>
+                             	<input type="hidden" id="teamStructureId" name="teamStructureId" value="" th:field="*{teamStructureId}"/>
+                                 <input type="text" class="form-control" id="memberName" name="memberName" th:field="*{memberName}"
+                                     placeholder="Enter Your Name" required>
+                                 <label th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}" style="color:red;">Error</label>
+                             </div>
+                         </div>
+						<br>
+                         <div class="form-group row">
+                             <label for="memberStaffId" class="col-sm-4 col-form-label text-center" id="memberStaffIdlabel">StaffID
+                                 -</label>
+                             <div class="col-sm-6">
+                                 <input type="text" class="form-control" id="memberStaffId" name="memberStaffId" th:field="*{memberStaffId}"
+                                     placeholder="25_XXXXX" required>
+                                 <label th:if="${#fields.hasErrors('memberStaffId')}" th:errors="*{memberStaffId}" style="color:red;">Error</label>
+                             </div>
+                         </div>
+						<br>
+                         <div class="form-group row">
+                             <label for="memberProjectCode" class="col-sm-4 col-form-label text-center"
+                                 id="memberProjectIdLabel">ProjectID -</label>
+                             <div class="col-sm-6">
+                                 <select class="form-control" data-live-search="true" id="memberProjectCode" name="memberProjectCode" th:field="*{memberProjectCode}" required>
+                                     <option th:each="memberProjectCode:${memberProjectList}" th:value="${memberProjectCode.key}" th:text="${memberProjectCode.key}"/>
+                                 </select>
+                                 <label th:if="${#fields.hasErrors('memberProjectCode')}" th:errors="*{memberProjectCode}" style="color:red;">Error</label>
+                             </div>
+                         </div>
+						<br>
+                        <div class="form-group row">
+                            <label for="memberTeamName" class="col-sm-4 col-form-label text-center" id="memberTeamLabel">Team
+                                -</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" data-live-search="true" id="memberTeamName" name="memberTeamName" th:field="*{memberTeamName}" required>
+                                    <option th:each="memberTeamName: ${memberTeamList}" th:value="${memberTeamName.key}" th:text="${memberTeamName.key}" />
+                                </select>
+                                <label th:if="${#fields.hasErrors('memberTeamName')}" th:errors="*{memberTeamName}" style="color:red;">Error</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label for="memberPositionName" class="col-sm-4 col-form-label text-center"
+                                id="memberPositionLabel">Position -</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" data-live-search="true" id="memberPositionName" name="memberPositionName" th:field="*{memberPositionName}" required>
+                                    <option th:each="memberPositionName:${memberPositionList}" th:value="${memberPositionName.key}" th:text="${memberPositionName.key}" />
+                                </select>
+                                <label th:if="${#fields.hasErrors('memberPositionName')}" th:errors="*{memberPositionName}" style="color:red;">Error</label>
+                            </div>
+                        </div>
+						<br>
+                        <div class="form-group row">
+                            <label for="memberSalary" class="col-sm-4 col-form-label text-center" id="memberSalaryLabel">Salary
+                                -</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="memberSalary" id="memberSalary" value="" th:field="*{memberSalary}" class="form-control">
+                                <label th:if="${#fields.hasErrors('memberSalary')}" th:errors="*{memberSalary}" style="color:red;">Error</label>
+                             </div>
+                         </div>
+                         <br>
+                         <div class="form-group row modal-footer">
+                             <label for="remark" class="col-sm-4 col-form-label"></label>
+                             <div class="col-sm-6">
+                                 <button type="submit"
+                                         class="btn btn-yellow" th:text="Update"></button>
+                                 <button type="button" class="btn btn-home"
+                                     data-dismiss="modal" th:text="Cancel"></button>
+                             </div>
+                         </div>
+                       	</div>
+                       </div>
+                   </div>
+               </div>
+		</div>
+	</form>
+
+	<form th:action="@{/admin/teamMemberDel}" method="post" th:object="${teamMemberBean}">
+           <!-- Delete Modal -->
+          <div class="myDelFormTeamMember">
+          <div class="modal fade" id="deleteformTeamMember" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document" id="modalsize" style="width:400px;">
+                  <div class="modal-content">
+                      <div class="modal-body">
+                              <h5 class="modal-title" id="deletetitle">Are you sure Delete?</h5>
+                              <br>
+                              <input type="hidden" id="memberId" name="memberId" value="" th:field="*{memberId}"/>
+                              <input type="hidden" id="teamStructureId" name="teamStructureId" value="" th:field="*{teamStructureId}"/>
+							  <input type="text" class="form-control" id="memberName" name="memberName" th:field="*{memberName}" value="" readonly="readonly"><br>
+							  <input type="text" class="form-control" id="memberProjectCode" name="memberProjectCode" th:field="*{memberProjectCode}" value="" readonly="readonly"><br>
+							  <input type="text" class="form-control" id="memberStaffId" name="memberStaffId" th:field="*{memberStaffId}" value="" readonly="readonly"><br>
+							  <input type="text" class="form-control" id="memberTeamName" name="memberTeamName" th:field="*{memberTeamName}" value="" readonly="readonly"><br>
+							  <input type="text" class="form-control" id="memberPositionName" name="memberPositionName" th:field="*{memberPositionName}" value="" readonly="readonly"><br>
+							  <input type="text" class="form-control" id="memberSalary" name="memberSalary" th:field="*{memberSalary}" value="" readonly="readonly"><br>
+                              <div class="form-group row modal-footer">
+                                  <div class="col-sm-12" style="text-align: center;">
+                                      <button type="submit" class="btn btn-red" id="delModal" name="submit" th:text="Delete"></button>
+                                      <button type="button" class="btn btn-home" data-dismiss="modal" th:text="Close"></button>
+                                  </div>
+                              </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </form>
+</main>
+</body>
+
+</html>

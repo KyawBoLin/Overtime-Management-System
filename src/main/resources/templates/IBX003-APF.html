@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/otForm :: layout(~{::main})}">
+<head>
+</head>
+<body style = "padding-right : 0px;">
+<main role = "main">
+	<!-- Pre loader -->
+	<div id="preloader2">
+		<div id="status2">&nbsp;</div>
+	</div>
+    <div id="approval">
+        <div class="btn-group approval-black">
+            <a th:href="@{/account/inbox}" class="btn btn-back">Back</a>
+        </div>
+
+        <div class="container approvalContainer">
+            <h3>Approval Form</h3>
+            <div class="row">
+                <div class="col-md-6">
+                  <div class = "tableContainer">
+                    <table>
+                        <tr>
+                            <td>
+                                <p>Project Id</p>
+                            </td>
+                            <td><p> : </p></td>
+                            <td>
+                                <p th:text="${formInfo.projectId}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Reasons</p>
+                            </td>
+                            <td><p> : </p></td>
+                            <td>
+                                <p th:text="${formInfo.reason}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Name</p>
+                            </td>
+                            <td><p> : </p></td>
+                            <td>
+                                <p th:text="${formInfo.createUser}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Date</p>
+                            </td>
+                            <td><p> : </p></td>
+                            <td>
+                                <p th:text="${formInfo.otDate}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Start Time</p>
+                            </td>
+                            <td><p> : </p></td>
+                            <td>
+                                <p th:text="${formInfo.actualStartHr}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Finish Time</p>
+                            </td>
+                            <td><p> : </p></td>
+                            <td>
+                                <p th:text="${formInfo.actualFinishHr}" />
+                            </td>
+                        </tr>
+                    </table>
+                  </div>
+                  <div class="button-group">
+                  	  <a th:href="@{approve(id=${formInfo.id})}" class="btn btn-yellow approve">Approve</a>
+                      <!--<button class="btn btn-yellow" name="approve" data-toggle="modal"
+                            data-target="#approvalform">Approve</button> -->
+
+
+                      <button class="btn btn-red" name="reject" data-toggle="modal"
+                            data-target="#rejectform">Reject</button>
+
+
+                      <button class="btn btn-home" name="revise" data-toggle="modal"
+                            data-target="#reviseform">Revise</button>
+
+                  </div>
+
+                  <!-- HR Approve Box Modal -->
+                  <div class = "myApprove">
+                  <div class="modal fade" id="approvalform" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document" style="width: 500px;">
+                            <div class="modal-content">
+                            
+                                <div class="modal-body">
+                                    <form th:action = "@{/account/approvalForm/approve}" 
+                                    method = "post" th:object = "${otFormBean}">
+                                        <h5 class="modal-title" id="approvaltitle">Approve Box</h5>
+
+                                        <div class="form-group row">
+                                            <label for="whr" class="col-sm-4 col-form-label sign">Working Hour File Upload
+                                                -</label>
+                                            <div class="col-sm-6">
+                                                <input type="file" id="whr">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="remark" class="col-sm-4 col-form-label"
+                                                id="textalignremark">Remark - </label>
+                                            <div class="col-sm-6">
+                                                <textarea class="form-control" id = "remark" 
+                                                name = "remark" th:field = "*{remark}"></textarea>
+                                                <input type = "hidden" id = "id" name = "id" value = ""
+                                                th:field = "*{id}"/>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="remark" class="col-sm-4 col-form-label"></label>
+                                            <div class="col-sm-6">
+                                                <button type="submit" class="btn btn-yellow" 
+                                                name = "button" value = "submit">Submit</button>
+                                                <button type="button" class="btn btn-home"
+                                                    data-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					</div>
+                    <!-- Reject Modal -->
+                    <div class="modal fade" id="rejectform" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document" style="width: 500px;">
+                            <div class="modal-content">
+                                
+                                <div class="modal-body">
+                                    <form th:action = "@{/account/approvalForm/reject}" 
+                                    method = "post" th:object = "${otFormBean}">
+                                        <h5 class="modal-title" id="approvaltitle">Reject Box</h5>
+                                        <div class="form-group row">
+                                            <label for="remark" class="col-sm-4 col-form-label"
+                                                id="textalignremark">Remark
+                                                - </label>
+                                            <div class="col-sm-6">
+                                                <textarea class="form-control" id="remark" name = "remark" th:field = "*{remark}">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="remark" class="col-sm-4 col-form-label"></label>
+                                            <div class="col-sm-6">
+                                                <button type="submit" name = "button" class="btn btn-yellow" 
+                                                value = "submit">Submit</button>
+                                                <button type="button" class="btn btn-home"
+                                                    data-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Revise Modal -->
+            <div class="modal fade" id="reviseform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document" style="width: 500px;">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form th:action = "@{/account/approvalForm/revise}" 
+                                    method = "post" th:object = "${otFormBean}">
+                                <h5 class="modal-title" id="approvaltitle">Revise Box</h5>
+                                <div class="form-group row">
+                                    <label for="remark" class="col-sm-4 col-form-label" id="textalignremark">Remark -
+                                    </label>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" id = "remark" name = "remark" th:field = "*{remark}">
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group row">
+                                    <label for="remark" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-6">
+                                        <button type="submit" class="btn btn-yellow" name = "button" 
+                                        value = "submit">Submit</button>
+                                        <button type="button" class="btn btn-home" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 approved-list">
+           <h4>Form Status</h4>
+           <div th:if = "${projectManager}!=null">
+             <span><i class="fa-solid fa-circle-check"></i></span>
+             <span>PM already approved.</span>
+           </div>
+           <div th:if = "${departmentHead}!=null">
+             <span><i class="fa-solid fa-circle-check"></i></span>
+             <span>Department Head already approved.</span>
+           </div>
+           <div th:if = "${divisionHead}!=null">
+             <span><i class="fa-solid fa-circle-check"></i></span>
+             <span>Division Head already approved.</span>
+           </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,445 @@
+/*
+    Default Themes
+------------------------
+    Font : Raleway and OpenSans
+
+    Colors : Moon Yellow : #FFB61E,#f4c613
+            Greay : #212226
+            White smoke : #f4f4f4
+            White : #fff
+            Black : #000
+*/
+
+/* -------------Main setting--------------  */
+html {
+    height: 100%;
+    margin:0;
+    padding:0;
+    width:100%;
+}
+
+body {
+	background-color:#ADD8E6;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: auto;
+    z-index: -1;
+}
+
+#home-back {
+    position: absolute;
+    width: 100%;
+    height: 687px;
+    left: 0px;
+    top: -7px;
+    background: linear-gradient(180deg, #336699 14.55%, rgba(86, 191, 181, 0) 100%);
+}
+
+#home-back2 {
+    position: absolute;
+    width: 100%;
+    height: 699px;
+    left: 0px;
+    top: 1700px;
+
+    background: linear-gradient(180deg, rgba(86, 191, 181, 0) 0%, #336699 58.38%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Raleway", sans-serif;
+}
+
+p {
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 400px;
+    line-height: 24px;
+}
+
+footer,
+section {
+    background-color: #fff;
+    overflow: hidden;
+}
+
+/* ------------- pre loader Section --------------  */
+
+#preloader{
+    background-color: #fff;
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index: 9999;
+}
+
+#status{
+    background-image: url('../resources/preloader.gif');
+    background-repeat: no-repeat;
+    width:200px;
+    height:200px;
+    position:absolute;
+    left:45%;
+    top:40%;
+    margin-left:-35px;      /* because of width and height are 70 px , status box want to move exactly center */
+    margin-top:-35px;
+}
+
+/* ------------- NavBar Section --------------  */
+.navbar {
+    transition: 0.5s;
+    background-color: #336699;
+}
+
+.site-nav-warp {
+    padding: 0 72px;
+}
+
+.site-nav-warp .container {
+    margin-top: 20px;
+}
+
+.navbar-brand {
+    padding: 13px 15px;
+}
+
+ul.navbar-nav li a {
+    font-family: "Raleway", sans-serif;
+    color: #fff;
+    font-size: 13.3px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: none;
+    padding: 15px;
+    text-decoration: none;
+}
+
+ul.navbar-nav li a:hover,
+ul.navbar-nav li a:active {
+    background: none;
+    color: #f4c613;
+    border-bottom: 1px solid #f4c613;
+    transition: all 0.5s;
+}
+
+.nav-header {
+    position: fixed;
+    right: 150px;
+    list-style: none;
+}
+
+/* ------------- welcome screen --------------  */
+.language-box {
+    border-radius: 15px;
+    width: 130px;
+    height: 32px;
+    left: 25px;
+    border: 1px solid #f4c613;
+    cursor: pointer;
+    color: #f4c613;
+    position: relative;
+    margin-bottom: 10px;
+    background: none;
+}
+
+.language-box:hover {
+    border: 1px solid #f4c613;
+    background-color: #f4c613;
+    color: #000000;
+    transition: all 0.5s ease-in-out;
+}
+
+.language {
+    text-align: center;
+    position: relative;
+    top: 3px;
+    font-size: 16.3px;
+    background-color: #f4c613;
+    color:#000;
+}
+
+/* ------------- Button --------------  */
+
+.btn-general {
+    font-family: "Raleway", sans-serif;
+    border-radius: 28px;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0 6px;
+    padding: 12px 46px 12px 46px;
+    transition: all 0.5s;
+}
+
+.btn-home {
+    color: #000000;
+    background-color:#f0c105;
+}
+
+.btn-home:hover,
+.btn-home:focus {
+    color: #000000;
+    background-color: #f9d235;
+    border: 1px solid #f9d235;
+}
+
+.btn-yellow {
+    border: 1px solid #f4c613;
+    background-color: #f4c613;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.btn-yellow:hover,
+.btn-yellow:focus {
+    color: #fff;
+    background-color: #212121;
+    border: 1px solid #212121;
+}
+
+/* -------------Home Section--------------  */
+
+#home-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 110px;
+    margin-bottom: 200px;
+}
+
+#home-content-inner {
+    vertical-align: middle;
+}
+
+.logo-background img {
+    width: 200px;
+}
+
+.logo-background {
+    background-color: #ffffff;
+    border-radius: 20px;
+    margin: 20px auto;
+    width: 230px;
+    height: 140px;
+}
+
+#home-heading h1 {
+    color: #fff;
+    font-weight: 200;
+    font-size: 30px;
+    text-transform: uppercase;
+    margin: 0;
+    display: inline-block;
+    line-height: 150%;
+}
+
+#home-heading span {
+    color: #ffdb11;
+    font-weight: 500;
+}
+
+#home-text p {
+    color: #000000;
+    font-size: 200%;
+    font-weight: 100;
+    line-height: 200%;
+    margin: 8px 0 30px 0;
+}
+
+#arrow-down {
+    position: absolute;
+    left: 50%;
+    bottom: -50px;
+    color: #000000;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    margin-left: -16px;
+    font-size: 24px;
+    transition: all 0.5s;
+}
+
+#arrow-down:hover,
+#arrow-down:focus {
+    color: #f4c613;
+}
+
+/* -------------OT Rules Section--------------  */
+
+.rule-01 .container h3 {
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.rule-01 .container {
+    width: 80%;
+    margin-bottom: 30px;
+}
+
+#rule-left{
+    padding-top: 100px;
+}
+#rule-left img {
+    width: 400px;
+    height: 350px;
+}
+
+#rule-right {
+    padding: 50px 0;
+}
+
+#rule-right .row-rules {
+    margin-bottom: 40px;
+}
+
+#rule-right .row-rules div {
+    width: 35px;
+    height: 35px;
+    background-color: #336699;
+    border-radius: 50%;
+    font-size: 100%;
+    color: #fff;
+    display: inline-block;
+    border: 1px solid #fff;
+}
+
+#rule-right .row-rules div span {
+    position: relative;
+    top: 3px;
+    right: 9px;
+}
+
+#rule-right .row-rules span {
+    margin-left: 20px;
+    font-size: 130%;
+}
+
+/* -------------Contact Section--------------  */
+
+#contact .container {
+    width: 80%;
+    margin-bottom: 500px;
+}
+
+#contact .container h3,
+#home-back2 .container h3 {
+    color: #000000;
+}
+
+#contact .company h3 {
+    color: #38817A;
+    margin: 30px 90px;
+    width: 300px;
+}
+
+.address {
+    font-size: 130%;
+    line-height: 300%;
+    margin-left: 130px;
+}
+
+.address div span:first-child {
+    font-size: 130%;
+}
+
+.address div span:last-child {
+    margin-left: 20px;
+}
+
+/* -------------Team Section--------------  */
+
+#home-back2 .container {
+    width: 80%;
+    margin-top: 100px;
+}
+
+.row-team {
+    text-align: center;
+}
+
+.team img {
+    width: 120px;
+    height: 120px;
+}
+
+.team-name {
+    font-family: 'Ink Free';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 79px;
+    color: #000000;
+}
+
+.team-person{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.person-frame{
+    margin:30px 30px;
+    text-align: center;
+}
+
+.person-frame div:first-child{
+    background-color: #fff;
+    width:100px;
+    height:100px;
+    border-radius: 50%;
+    color:#000;
+    font-size: 400%;
+    margin-bottom:10px;
+}
+
+.person-frame div:first-child i{
+    position:relative;
+    top:10px;
+}
+
+.person-frame .user1{
+    margin-left:20px;
+}
+
+.person-frame div:last-child{
+    position:relative;
+    top:10px;
+    color:#fff;
+}
+
+/* ------------- Footer Section--------------  */
+
+.footer{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.footer p{
+    text-align: center;
+    margin-top:20px;
+    color:#fff;
+}
+
+.footer p span{
+    color:#6ee656;
+}
+.footer a{
+    height:30px;
+    position:relative;
+    right:10px;
+    top:900px;
+    transition:all 0.5s;
+    position:fixed;
+}

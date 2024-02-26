@@ -1,0 +1,423 @@
+/* -------------Main setting--------------  */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Raleway", sans-serif;
+}
+
+* {
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 400px;
+    line-height: 24px;
+}
+
+
+/* ------------- Button --------------  */
+
+.btn-general {
+    font-family: "Raleway", sans-serif;
+    border-radius: 28px;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0 6px;
+    padding: 12px 46px 12px 46px;
+    transition: all 0.5s;
+}
+
+.btn-home {
+    border: 1px solid #000;
+    color: #000000;
+    font-size: 13px;
+    transition: all 0.5s;
+}
+
+.btn-home:hover,
+.btn-home:focus {
+    color: #ff1221;
+    border: 1px solid #f4c613;
+}
+
+.btn-yellow {
+    border: 1px solid #f4c613;
+    background-color: #f4c613;
+    color: #fff;
+    font-size: 13px;
+    transition: all 0.5s;
+}
+
+.btn-yellow:hover,
+.btn-yellow:focus {
+    color: #fff;
+    background-color: #a295ec;
+    border: 1px solid #212121;
+}
+
+.btn-red {
+    border: 1px solid #fa2222;
+    background-color: #fa2222;
+    color: #fff;
+    font-size: 13px;
+    transition: all 0.5s;
+}
+
+.btn-red:hover,
+.btn-red:focus {
+    color: #fff;
+    background-color: #212121;
+    border: 1px solid #212121;
+}
+
+.btn-back {
+    background-color: #fa2222;
+    border-radius: 0 0 0 10px;
+    border: 1px solid #fa2222;
+    color: #fff;
+    font-size: 15px;
+    transition: all 0.5s;
+}
+
+.btn-back:hover,
+.btn-back:focus {
+    color: #fff;
+    background-color: #212121;
+    border: 1px solid #212121;
+}
+
+.btn-blue {
+    border: 1px solid #1162ff;
+    background-color: #1162ff;
+    color: #fff;
+    font-size: 13px;
+    transition: all 0.5s;
+}
+
+.btn-blue:hover,
+.btn-blue:focus {
+    color: #fff;
+    background-color: #3c9fa5;
+    border: 1px solid #212121;
+}
+
+/* ------------- pre loader Section --------------  */
+
+#preloader {
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+}
+
+#status {
+    background-image: url('images/preloader.gif');
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 45%;
+    top: 40%;
+    margin-left: -35px;
+    /* because of width and height are 70 px , status box want to move exactly center */
+    margin-top: -35px;
+}
+
+/* ------------- header design Section --------------  */
+
+.name-box{
+    background-color: #5C6898;
+    width:160px;
+    height:100px;
+    border-radius: 0 20px 20px 0;
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.name-box div{
+    position:relative;
+    left:30px;
+    top:35px;
+    font-weight: 600;
+    color:#FEE34F;
+}
+
+.home-box{
+    background-color: #5C6898;
+    width:130px;
+    height:100px;
+    border-radius: 20px 0px 0px 20px;
+    position: absolute;
+    cursor: pointer;
+    right:0;
+}
+.home-box div{
+    position:relative;
+    left:0px;
+    top:18px;
+}
+
+.home-box i:hover,
+.home-box i:focus,
+.home-box div a:hover,
+.home-box div a:focus{
+    color:#FEE34F;
+}
+.home-box i{
+    font-size: 30px;
+    margin-left:8px;
+    margin-bottom: 10px;
+    color: #e2b811;
+    transition:all 0.5s;
+}
+.home-box a{
+    margin-left: 50px;
+    outline: none;
+    text-decoration: none;
+    font-weight: 600;
+    color:#e2b811;
+}
+
+#inbox-page {
+    background-image: url('images/ot_background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: auto;
+    z-index: -1;
+}
+
+.tabinator {
+    font-family: Open Sans;
+    padding:45px 10px 0px 10px;
+}
+
+.tabinator h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tabinator input {
+    display: none;
+}
+
+.tabinator label {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 20px 20px;
+    color: white;
+    margin-bottom: -1px;
+    margin-left: -1px;
+    transition:background 0.5s;
+    font-size:15px;
+}
+
+.tabinator label:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 15px;
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+    
+}
+
+.tabinator label:hover {
+    color: #000;
+    cursor: pointer;
+    background: #FEE34F;
+    
+}
+
+.tabinator input:checked+label {
+    position: relative;
+    color: #000;
+    background: #D1D5FA;
+    border-radius: 30px 30px 0 0;
+    top: -13px;         
+    bottom: 0;
+    z-index: 4;
+}
+
+.tabinator input:checked+label:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+embed{
+    border-radius: 20px;
+}
+
+#content1,
+#content2,
+#content3,
+#content4,
+#content5 {
+    display: none;
+    /* border-top: 1px solid #bbb; */
+    padding: 0px;
+    margin:0;
+    height: 513px;
+    border-radius: 20px;
+}
+
+#tab1:checked~#content1,
+#tab2:checked~#content2,
+#tab3:checked~#content3,
+#tab4:checked~#content4,
+#tab5:checked~#content5 {
+    display: block;
+    border: 0;
+    z-index: 10;
+    position: relative;
+    top: -38px;
+}
+
+.tab1,
+.tab2,
+.tab3,
+.tab4,
+.tab5 {
+    border-radius: 30px 30px 0 0;
+    height: 100px;
+    width: 150px;
+}
+
+.tab1 {
+    z-index: 4;
+    position: relative;
+    right:-500px;
+    background-color: #5C6898
+}
+
+.tab2 {
+    z-index: 3;
+    position: relative;
+    right:-488px;
+    background-color:#42A6C0
+}
+
+.tab3 {
+    z-index: 2;
+    position: relative;
+    right:-476px;
+    background-color: #5C6898
+}
+
+.tab4 {
+    z-index: 1;
+    position: relative;
+    right:-464px;
+    background-color:#42A6C0
+}
+
+.tab5 {
+    z-index: 0;
+    position: relative;
+    right:-452px;
+    background-color:#5C6898
+}
+/* ------------- dashboard data Section --------------  */
+
+#content1{
+    padding:0 0 20px 0;
+}
+
+/* ------------- staff data Section --------------  */
+
+
+/* ------------- Upload data Section --------------  */
+
+#content4 .team-structure{
+    display:inline-block;
+    width: 480px;
+    margin:50px 0 100px 100px;
+}
+
+.team-structure .upload-style{
+    margin:40px 0;
+}
+.team-structure .upload-style label{
+    background-color: #42A6C0;
+    border-radius: 10px;
+    font-size: 15px;
+    padding:8px 20px; 
+}
+.team-structure .upload-style input{
+    display:inline;
+    background-color: #fff;
+    border-radius: 0 10px 10px 0;
+    font-size: 15px;
+}
+
+.team-structure .upload-style label:hover,
+.team-structure .upload-style label:focus{
+    background-color: #f4c613;
+    color:#000;
+    border-radius: 10px;
+}
+
+#content4 h4{
+    font-weight: 700;
+    font-size: 100%;
+}
+
+/* ------------- insert data Section --------------  */
+
+#content5 .insert-container{
+    margin:20px;
+}
+
+#content5 .insert-container .first-input-box-group{
+    width:100%;
+    display:flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.insert-container .emp-button{
+    margin-left:20px;
+}
+
+#content5 .insert-container .first-input-box-group .emp-data{
+    width:300px;
+    margin:0 0 0 20px;
+}
+
+.emp-data div{
+    color:#000;
+    padding: 10px 0;
+    font-size: 16px;
+}
+
+.emp-data select{
+    height:40px;
+    font-size: 16px;
+}
+
+.emp-data input{
+    display:inline;
+    height:40px;
+    margin-top:10px;
+}

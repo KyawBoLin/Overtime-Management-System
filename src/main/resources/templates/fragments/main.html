@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="main(content)">
+<head>
+	<link rel = "icon" th:href = "@{../resources/DATLogo2.png}"  type = "image/x-icon">
+</head>
+<body>
+	<main th:replace="${content}"></main>
+</body>
+</html>

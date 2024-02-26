@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/main :: layout(~{::main})}">
+    <head>
+    	
+    </head>
+<body>
+<main role="main">
+    <!-- Pre loader -->
+    <div id="preloader2">
+        <div id="status2">&nbsp;</div>
+    </div>
+    <div id="inbox-page">
+        <div id="inbox-page">
+            <div class="home-box">
+                    
+              <a th:href="@{/home}"><i class="fa-solid fa-house"></i></a>
+          
+              <a href="javascript: document.logoutForm.submit()"><i class="fa-solid fa-power-off"></i></a>
+              
+              <form name="logoutForm" method="post" th:action="@{/logout}" th:hidden="true">
+              	<input hidden type="submit" value="Sign Out">
+              </form>
+              
+			</div>
+        </div>
+        <div class="tabinator">
+
+
+            <div for="tab1" class="tab1"><a th:href="@{/admin/dashboard}">Dashboard</a></div>
+
+
+            <div for="tab1" class="tab2"><a th:href="@{/admin/teamMember}">Team Members</a></div>
+
+
+            <div for="tab1" class="tab3"><a th:href="@{/admin/management}">Management</a></div>
+
+
+            <div for="tab1" class="tab4"><a th:href="@{/admin/upload}">Upload Data</a></div>
+
+
+            <div for="tab1" class="tab5" style="background-color: #D1D5FA;top:-12px;z-index: 5;"><a style="color:#000" th:href="@{/admin/insertData}">Insert Data</a></div>
+
+
+        </div>
+    </div>
+    <div id="content4" style="background-color:#D1D5FA">
+    
+    		<!-- Error Message -->
+			<div th:if="${message}!=null"
+				class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong><p th:text="${message}" /></strong>
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+    
+            <div class="insert-open" onclick="insertDrop()">Insert Categories &nbsp;&nbsp;<i class="fa-solid fa-angle-down"></i></div>
+            <div class="insert-drop">
+                <div class="insert-link"><a th:href="@{/admin/team}">Team Insert</a></div>
+                <div class="insert-link"><a th:href="@{/admin/project}">Project Insert</a></div>
+                <div class="insert-link"><a th:href="@{/admin/position}">Position Insert</a></div>
+                <div class="insert-link"><a th:href="@{/admin/otrule}">OT Rule Insert</a></div>
+            </div>
+            <div class="emp-container">
+            	<p style="color:red">
+            		Note: The last Employee Id is <i><span th:text="${staffId26}"></span></i> (for Female) and <i><span th:text="${staffId25}"></span></i> (for Male)
+            	</p>
+           </div>
+    <form th:action="@{/admin/insertData/saveEmployeeData}" method="post" th:object="${insertDataBean}">
+        <div class="insert-container emp-container">
+            <h5>Employee Data</h5>
+            <div class="first-input-box-group">
+                <div class="emp-data">
+                    <div>Project ID</div>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" id="inputGroupSelect01" name="projectId" th:field="*{projectId}" required>
+                            <option value="">Choose...</option>
+                            <option th:each="p:${projectList}" th:value="${p.value}" th:text="${p.key}"/>
+                        </select>
+                    </div>
+                </div>
+                <div class="emp-data">
+                    <div>Team</div>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" id="inputGroupSelect01" name="team" th:field="*{team}" required>
+                            <option value="">Choose...</option>
+                            <option th:each="t:${teamList}" th:value="${t.value}" th:text="${t.key}">System</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="emp-data">
+                	<div>Salary</div>
+                	<input type="text" name="salary" th:field="*{salary}" class="form-control" placeholder="Staff Salary" required>
+                </div>
+            </div>
+            <div class="first-input-box-group">
+                <div class="emp-data form-group">
+                    <div>Name</div>
+                    <input type="text" name="name" th:field="*{name}" class="form-control" required>
+                </div>
+                <div class="emp-data form-group">
+                    <div>Employee ID</div>
+                    <input type="text" name="employeeId" th:field="*{employeeId}" class="form-control" placeholder="26/25-00001" required>
+                </div>
+                <div class="emp-data form-group">
+                    <div>Position</div>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" id="inputGroupSelect01" name="position" th:field="*{position}" required>
+                            <option value="">Choose...</option>
+                            <option th:each="p:${positionList}" th:value="${p.value}" th:text="${p.key}">Project Manager</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="emp-button">
+                <button class="btn btn-yellow" name="submit" type="submit">Submit</button>
+                <button class="btn btn-red" name="cancel" type="reset">Cancel</button>
+            </div>
+        </div>
+    </form>
+    </div>
+  
+    <script>
+        function insertDrop(){
+            const insert = document.getElementsByClassName("insert-drop")[0];
+            if(insert.style.display=="none"){
+                insert.style.display="block";
+            }else{
+                insert.style.display="none";
+            }
+        }
+    </script>
+   </main>
+</body>
+
+</html>

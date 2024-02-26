@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/main :: layout(~{::main})}">
+<head></head>
+<body>
+<main role="main">
+    <!-- Pre loader -->
+    <div id="preloader2">
+        <div id="status2">&nbsp;</div>
+    </div>
+    <div id="inbox-page">
+        <div class="home-box">
+                    
+            <a th:href="@{/home}"><i class="fa-solid fa-house"></i></a>
+        
+            <a href="javascript: document.logoutForm.submit()"><i class="fa-solid fa-power-off"></i></a>
+            
+            <form name="logoutForm" method="post" th:action="@{/logout}" th:hidden="true">
+              	<input hidden type="submit" value="Sign Out">
+            </form>
+        </div>
+    </div>
+        <div class="tabinator">
+
+
+            <div class="tab1"><a th:href="@{/admin/dashboard}">Dashboard</a></div>
+
+
+            <div class="tab2"><a th:href="@{/admin/teamMember}">Team Members</a></div>
+
+
+            <div class="tab3" style="background-color: #D1D5FA;top:-12px;z-index: 5;"><a style="color:#000"  th:href="@{/admin/management}">Management</a></div>
+
+
+            <div class="tab4"><a th:href="@{/admin/upload}">Upload Data</a></div>
+
+
+            <div class="tab5"><a th:href="@{/admin/insertData}">Insert Data</a></div>
+
+        </div>
+    <div id="content3" style="background-color:#D1D5FA">
+        
+        <table class="table-striped">
+            <tr>
+                <th>
+                    <p>No</p>
+                </th>
+                <th>
+                    <p>Project ID</p>
+                </th>
+                <th>
+                    <p>Name</p>
+                </th>
+                <th>
+                    <p>Staff ID</p>
+                </th>
+                <th>
+                    <p>Team</p>
+                </th>
+                <th>
+                    <p>Position</p>
+                </th>
+                <th>
+                    <p>Salary</p>
+                </th>
+                <th style="text-align:center;">
+					<div class="search-container">
+						<nav class="navbar">
+							<form class="form-inline formCom" th:action="@{/searchManage}" method="post" th:object="${managementBean}" style="text-align:right;">
+								<input class="form-control formInput" style="width:150px;" type="search" placeholder="Search" aria-label="Search" th:field="*{name}">
+								<button class="btn btn-search" type="submit"><i class="fa fa-magnifying-glass"></i></button>
+							</form>
+						</nav>
+					</div>
+				</th>
+            </tr>
+            <tr>
+				<div th:if="${message}!=null"
+					class="alert alert-warning alert-dismissible fade show"
+					role="alert">
+					<p>
+						<strong th:text="${message}"></strong>
+					</p>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</tr>
+            <tr class="style1" th:each="manage : ${manageList}">
+                <td>
+                    <p th:utext="${manageStat.index+1}" />
+                </td>
+                <td>
+                    <p th:text="${manage.projectCode}" />
+                </td>
+                <td>
+                    <p th:text="${manage.name}" />
+                </td>
+                <td>
+                    <p th:text="${manage.staffId}" />
+                </td>
+                <td>
+                    <p th:text="${manage.teamName}" />
+                </td>
+                <td>
+                    <p th:text="${manage.positionName}" />
+                </td>
+                <td>
+                    <p th:text="${manage.salary}" />
+                </td>
+                <td>
+                    <a th:href="@{findManagement/(id=${manage.id})}" class="updatebtn manageEdit" style="padding-right:20px;">
+ 						 <i class="fa-solid fa-file-pen updatebtn"></i></a>
+					<a th:href="@{findManagement/(id=${manage.id})}" class="updatebtn manageDelete">
+  						<i class="fa-solid fa-trash-can trashbtn"></i></a>
+  				</td>
+            </tr>
+         </table>
+    </div>	
+<!-- pagination -->
+<div class="pagination">
+	<ul class="nav nav-pills"
+		th:if="${message}==null or ${message}=='Deleted Successfully.' or ${message}=='Updated Successfully.'">
+		<li class="nav-item"
+			th:each="i : ${#numbers.sequence(0,manageList.totalPages-1)}">
+			<a th:href="@{/admin/management(page=${i})}" th:text="${i+1}"
+			class="nav-link" th:classappend="${currentPage}==${i}?'active':''"></a>
+		</li>
+	</ul>
+</div>
+  						
+	<form th:action="@{/admin/manageUpdate}" method="post" th:object="${managementBean}">
+     <!-- Update Modal-->
+     <div class="myManagement">
+     <div class="modal fade" id="updateformManage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered" role="document" style="width: 500px;">
+             <div class="modal-content">
+                 <div class="modal-body">
+                         <h5 class="modal-title" id="approvaltitle">Update Management Staff</h5>
+                         <br>
+                         <div class="form-group row">
+                             <label for="name" class="col-sm-4 col-form-label text-center" id="namelabel">Name -</label>
+                             <div class="col-sm-6">
+                             	<input type="hidden" id="id" name="id" value="" th:field="*{id}"/>
+                             	<input type="hidden" id="teamStructureId" name="teamStructureId" value="" th:field="*{teamStructureId}"/>
+                                 <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
+                                     placeholder="Enter Your Name" required>
+                                 <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;">Error</label>
+                             </div>
+                         </div>
+						<br>
+                         <div class="form-group row">
+                             <label for="staffId" class="col-sm-4 col-form-label text-center" id="staffIdlabel">StaffID
+                                 -</label>
+                             <div class="col-sm-6">
+                                 <input type="text" class="form-control" id="staffId" name="staffId" th:field="*{staffId}"
+                                     placeholder="25_XXXXX" required>
+                                 <label th:if="${#fields.hasErrors('staffId')}" th:errors="*{staffId}" style="color:red;">Error</label>
+                             </div>
+                         </div>
+						<br>
+                         <div class="form-group row">
+                             <label for="projectCode" class="col-sm-4 col-form-label text-center"
+                                 id="projectIdLabel">ProjectID -</label>
+                             <div class="col-sm-6">
+                                 <select class="form-control" data-live-search="true" id="projectCode" name="projectCode" th:field="*{projectCode}" required>
+                                     <option th:each="projectCode:${projectList}" th:value="${projectCode.key}" th:text="${projectCode.key}"/>
+                                 </select>
+                                 <label th:if="${#fields.hasErrors('projectCode')}" th:errors="*{projectCode}" style="color:red;">Error</label>
+                             </div>
+                         </div>
+						<br>
+                        <div class="form-group row">
+                            <label for="teamName" class="col-sm-4 col-form-label text-center" id="teamLabel">Team
+                                -</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" data-live-search="true" id="teamName" name="teamName" th:field="*{teamName}" required>
+                                    <option th:each="teamName: ${teamList}" th:value="${teamName.key}" th:text="${teamName.key}" />
+                                </select>
+                                <label th:if="${#fields.hasErrors('teamName')}" th:errors="*{teamName}" style="color:red;">Error</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label for="positionName" class="col-sm-4 col-form-label text-center"
+                                id="positionLabel">Position -</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" data-live-search="true" id="positionName" name="positionName" th:field="*{positionName}" required>
+                                    <option th:each="positionName:${positionList}" th:value="${positionName.key}" th:text="${positionName.key}" />
+                                </select>
+                                <label th:if="${#fields.hasErrors('positionName')}" th:errors="*{positionName}" style="color:red;">Error</label>
+                            </div>
+                        </div>
+						<br>
+                        <div class="form-group row">
+                            <label for="salary" class="col-sm-4 col-form-label text-center" id="salaryLabel">Salary
+                                -</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="salary" id="salary" value="" th:field="*{salary}" class="form-control">
+                                <label th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}" style="color:red;">Error</label>
+                             </div>
+                         </div>
+                         <br>
+                         <div class="form-group row modal-footer">
+                             <label for="remark" class="col-sm-4 col-form-label"></label>
+                             <div class="col-sm-6">
+                                 <button type="submit"
+                                         class="btn btn-yellow" th:text="Update"></button>
+                                 <button type="button" class="btn btn-home"
+                                     data-dismiss="modal" th:text="Cancel"></button>
+                             </div>
+                         </div>
+                       	</div>
+                       </div>
+                   </div>
+               </div>
+		</div>
+	</form>
+
+	<form th:action="@{/admin/manageDel}" method="post" th:object="${managementBean}">
+           <!-- Delete Modal -->
+          <div class="myDelFormManagement">
+          <div class="modal fade" id="deleteformManagement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document" id="modalsize" style="width:400px;">
+                  <div class="modal-content">
+                      <div class="modal-body">
+                              <h5 class="modal-title" id="deletetitle">Are you sure Delete?</h5>
+                              <br>
+                              <input type="hidden" id="id" name="id" value="" th:field="*{id}"/>
+                              <input type="hidden" id="teamStructureId" name="teamStructureId" value="" th:field="*{teamStructureId}"/>
+							  <input type="text" class="form-control" id="name" name="name" th:field="*{name}" value="" readonly="readonly"><br>
+							  <input type="text" class="form-control" id="projectCode" name="projectCode" th:field="*{projectCode}" value="" readonly="readonly"><br>
+							  <input type="text" class="form-control" id="staffId" name="staffId" th:field="*{staffId}" value="" readonly="readonly"><br>
+							  <input type="text" class="form-control" id="teamName" name="teamName" th:field="*{teamName}" value="" readonly="readonly"><br>
+							  <input type="text" class="form-control" id="positionName" name="positionName" th:field="*{positionName}" value="" readonly="readonly"><br>
+							  <input type="text" class="form-control" id="salary" name="salary" th:field="*{salary}" value="" readonly="readonly"><br>
+                              <div class="form-group row modal-footer">
+                                  <div class="col-sm-12" style="text-align: center;">
+                                      <button type="submit" class="btn btn-red" id="delModal" name="submit" th:text="Delete"></button>
+                                      <button type="button" class="btn btn-home" data-dismiss="modal" th:text="Close"></button>
+                                  </div>
+                              </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </form>
+</main>
+</body>
+</html>

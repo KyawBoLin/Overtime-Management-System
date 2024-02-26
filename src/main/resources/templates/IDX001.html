@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:replace="~{layouts/index :: layout(~{::main})}">
+
+<head>
+	
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="100">
+<main role="main">
+    <!-- Pre loader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+
+    <!-- Nav Bar -->
+    <header id="header">
+        <nav class="navbar navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="site-nav-warp">
+                    <!-- Language-->
+                    <div class="navbar-header">
+                        
+                        <div class="form-group">
+                            <select class="form-control language-box" id="exampleFormControlSelect1">
+                                <option class="language">English</option>
+                                <option class="language">Myanmar</option>
+                                <option class="language">Japanese</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="collapse navbar-collapse">
+                            <ul class="navbar-nav nav-header">
+                                <li><a href="#otRule" class="smooth-scroll">OT.Rule</a></li>
+                                <li><a href="#contact" class="smooth-scroll">Contact Us</a></li>
+                                <li><a href="#back2" class="smooth-scroll">Our Team</a></li>
+                                <li sec:authorize="!isAuthenticated()">
+                                	<a href="#" th:href="@{/login}">Login</a>
+                                </li>
+                                <li sec:authorize="isAuthenticated()">
+                                	<a href="#" th:href="@{/account/otForm}" class="mr-2">Account</a>
+                                	<a href="#" th:href="@{/admin/upload}" class="mr-2">Admin</a>
+                                	<a href="javascript: document.logoutForm.submit()">Logout</a>
+                                	
+                                	<form name="logoutForm" method="post" th:action="@{/logout}" th:hidden="true">
+                                		<input hidden type="submit" value="Sign Out">
+                                	</form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Nav Bar -->
+
+    <!-- Home Section  -->
+    <div id="home">
+        <div id="home-back"></div>
+        <div id="home-content">
+            <div id="home-content-inner" class="text-center">
+                <div class="logo-background">
+                    <img src="../resources/DAT Logo.png" alt="dat-logo">
+                </div>
+                <div id="home-heading">
+                    <h1 id="js--wp-digital"><span>Daiwa </span>Institute</h1><br>
+                    <h1><span>of</span></h1><br>
+                    <h1>Research Ace <span>Technology</span></h1>
+                </div>
+                <div id="home-text">
+                    <p>
+                        Overtime Management
+                    </p>
+                </div>
+                <div id="home-btn">
+                    <a href="#otRule" class="btn btn-general btn-home smooth-scroll">swip down</a>
+                </div>
+
+                <!-- Arrow Down  -->
+                <a href="#otRule" id="arrow-down" class="smooth-scroll">
+                    <i class="fas fa-chevron-down smooth-scroll"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rules Section  -->
+    <div id="otRule">
+        <div class="rule-01">
+            <div class="container">
+                <h3>OT RULES</h3>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div id="rule-left">
+                            <img src="../resources/over.png" alt="rule-image">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div id="rule-right">
+                            <div class="row-rules" th:each="rule:${ruleList}">
+                                <div><span th:utext="${ruleStat.index+1}"></span></div>
+                                <span th:text="${rule.ruleName}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section  -->
+    <div id="contact">
+        <div class="container">
+            <h3>CONTACT INFORMATION</h3>
+            <div class="row">
+                <div class="company">
+                    <h3><strong>DIR-ACE Technology Ltd.</strong></h3>
+                </div>
+                <div class="address">
+                    <div>
+                        <span><i class="fa fa-landmark"></i></span>
+                        <span>Building 17,3rd Floor</span>
+                    </div>
+                    <div>
+                        <span><i class="fa fa-location-arrow"></i></span>
+                        <span>Myanmar Info-Tech, Hlaing Campus Yangon, Myanmar.</span>
+                    </div>
+                    <div>
+                        <span><i class="fa fa-envelope"></i></span>
+                        <span>admin@diracetechnology.com</span>
+                    </div>
+                    <div>
+                        <span><i class="fa fa-address-book"></i></span>
+                        <span>(Phone)+951-521127,+951-2305139 (Fax)+951-2305139</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Section  -->
+    <div id="home-back2">
+        <div class="container">
+            <h3 id="back2">OUR TEAM</h3>
+            <div class="row row-team">
+                <div class="team">
+                    <img src="../resources/clover.png" alt="team-logo">
+                </div>
+                <div class="team-name">
+                    <div>Four Leaf Clover</div>
+                </div>
+                <div class="team-person">
+                    <div class="person-frame">
+                        <div><i class="fa fa-user"></i></div>
+                        <div>
+                            Kyaw Bo Bo Lin
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+        <div class="container footer">
+            <!-- footer -->
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Copyright &copy; 2022 Created By <span>Four Leaf Clover</span></p>
+                </div>
+            </div>
+
+            <!-- arrow -->
+            <a href="#home" id="back-to-top" class="btn btn-sm btn-yellow btn-back-to-top smooth-scroll" title="home" role="button"><i class="fa fa-angle-up"></i></a>
+       </div>
+</main>
+   
+</body>
+
+</html>

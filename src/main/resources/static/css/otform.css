@@ -1,0 +1,184 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background:transparent;
+    background-color: #f3f3f3;
+}
+
+#content3{
+    position:relative;
+    top:-35px;
+    padding: 6px 0px;
+    border-radius: 20px;
+    margin:0 10px;
+    z-index: 6;
+    transition:all 0.5s;  
+}
+
+#approvaltitle {
+    font-size: larger;
+    text-align: center;
+    padding: 1% 0% 5% 0%;
+    font-weight: bold;
+}
+
+.profile-body {
+	margin-left:50px;
+}
+
+.sign {
+    width: 150px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+#signature{
+    width: 120%;
+    margin: 0 auto;
+    border: none;
+    border: solid 1px #ccc;
+    border-radius: 10px;
+    padding: 5% 0% 5% 5%;
+}
+
+.image-div {
+    margin:30px 0px 0px 0px;
+}
+
+/* Button Style */
+
+.btn-group {
+    float: right;
+}
+
+.custom-select {
+    width: 150px;
+    height: 42px;
+    background-color: #1162ff;
+    border: 2px solid #1162ff;
+    border-radius: 5px;
+    color: #fff;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-right:10px;
+}
+
+.custom-select:hover,
+.custom-select:focus {
+    background-color: #555555;
+    border: 2px solid aqua;
+}
+
+.btn-home {
+    border: 1px solid #000;
+    color: #000000;
+    font-size: 13px;
+    transition: all 0.5s;
+    padding:10px 20px;
+    margin-right:5px;
+    border-color:#D1D5FA;
+    cursor:pointer;
+}
+
+.btn-home:hover,
+.btn-home:focus {
+    color: #fff;
+    border: 1px solid #a295ec;
+    background-color: #a295ec;
+}
+
+.btn-yellow {
+    border: 1px solid #f4c613;
+    background-color: #f4c613;
+    color: #fff;
+    font-size: 13px;
+    transition: all 0.5s;
+    padding:10px 20px;
+    margin-right:5px;
+}
+
+.btn-yellow:hover,
+.btn-yellow:focus {
+    color: #fff;
+    background-color: #42A6C0;
+    border: 1px solid aqua;
+}
+
+.btn-blue {
+    border: 1px solid #1162ff;
+    background-color: #1162ff;
+    color: #fff;
+    font-size: 13px;
+    transition: all 0.5s;
+    padding: 10px 20px;
+}
+
+.btn-blue:hover,
+.btn-blue:focus {
+    color: #fff;
+    background-color: #42A6C0;
+    border: 1px solid aqua;
+}
+
+.btn-red {
+    border: 1px solid #fa2222;
+    background-color: #fa2222;
+    color: #fff;
+    font-size: 13px;
+    transition: all 0.5s;
+    padding: 10px 20px;
+}
+
+.btn-red:hover,
+.btn-red:focus {
+    color: #fa2222;
+    background-color: #fff;
+    border: 1px solid #fa2222;
+}
+
+/* input box style */
+
+.inputStyle {
+    border-radius: 10px;
+    height: 35px;
+    width: 200px;
+}
+
+#projectId {
+	width: 65%;
+}
+
+/*Table Style*/ 
+#otFormTable {
+    width: 80%;
+    margin-left: 100px;
+    border-collapse: collapse;
+}
+
+#otFormTable td {
+    color: #5C6898;
+}
+
+#otFormTable td input {
+    color: #000;
+}
+
+#otFormTable th {
+    font-size: 120%;
+    text-align: left;
+}
+
+.container {
+    max-width:1250px;
+}
+
+.otDateInput {
+	background-color : #fff;
+	border : 1px solid #ced4da;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.input-group {
+	width:75%;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/main :: layout(~{::main})}">
+<head>	
+</head>
+<body>
+<main role="main">
+     <!-- Pre loader -->
+     <div id="preloader2">
+        <div id="status2">&nbsp;</div>
+    </div>
+    <div id="inbox-page">
+        <div id="inbox-page">
+            <div class="home-box">
+                    
+              <a th:href="@{/home}"><i class="fa-solid fa-house"></i></a>
+          
+              <a href="javascript: document.logoutForm.submit()"><i class="fa-solid fa-power-off"></i></a>
+              
+              <form name="logoutForm" method="post" th:action="@{/logout}" th:hidden="true">
+              	<input hidden type="submit" value="Sign Out">
+              </form>
+			</div>
+        </div>
+        <div class="tabinator">
+
+
+            <div class="tab1"><a th:href="@{/admin/dashboard}">Dashboard</a></div>
+
+
+            <div class="tab2"><a th:href="@{/admin/teamMember}">Team Members</a></div>
+
+
+            <div class="tab3"><a th:href="@{/admin/management}">Management</a></div>
+
+
+            <div class="tab4" style="background-color: #D1D5FA;top:-12px;z-index: 5;"><a style="color:#000" th:href="@{/admin/upload}">Upload Data</a></div>
+
+
+            <div class="tab5"><a th:href="@{/admin/insertData}">Insert Data</a></div>
+
+
+        </div>
+    </div>
+    <div id="content4" style="background-color:#D1D5FA">
+    	<div th:if="${message}!=null" class="alert alert-warning alert-dismissible fade show"
+			role="alert">
+			<strong><p th:text="${message}" /></strong> 
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+        <div class="team-structure">
+            <div>
+                <h4>Upload Team Structure</h4>
+            </div>
+            <div>
+                <form class="form" method="post" th:action="@{/admin/upload/uploadTeam}" enctype="multipart/form-data">
+                    <div class="form-group upload-style">
+                        <label for="exampleFormControlFile">
+                            <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                        </label>
+                        <input type="file" class="" id="exampleFormControlFile" name="file">
+                    </div>
+                    <button class="btn btn-yellow" name="upload">Upload</button>
+                    <button class="btn btn-home" name="cancel">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="team-structure">
+            <div>
+                <h4>Upload Salary Information</h4>
+            </div>
+            <div>
+                <form class="form" method="post" th:action="@{/admin/position/uploadPosition}" enctype="multipart/form-data">
+                    <div class="form-group upload-style">
+                        <label for="exampleFormControlFile1">
+                            <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                        </label>
+                        <input type="file" class="" id="exampleFormControlFile1" name="fileSalary">
+                    </div>
+                    <button class="btn btn-yellow" name="upload">Upload</button>
+                    <button class="btn btn-home" name="cancel">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</main>
+    
+</body>
+</html>

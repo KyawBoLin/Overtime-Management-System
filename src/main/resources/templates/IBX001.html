@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/otList :: layout(~{::main})}">
+<head>
+</head>
+<body>
+<main role = "main">
+     <!-- Pre loader -->
+    <div id="preloader2">
+        <div id="status2">&nbsp;</div>
+    </div>
+    <div id="inbox-page">
+        <div class="home-box">
+            
+            <a th:href="@{/home}"><i class="fa-solid fa-house"></i></a>
+        
+            <a href="javascript: document.logoutForm.submit()"><i class="fa-solid fa-power-off"></i></a>
+
+            <form name="logoutForm" method="post" th:action="@{/logout}" th:hidden="true">
+              	<input hidden type="submit" value="Sign Out">
+            </form>
+
+            <button type="button" class="profile" data-toggle="modal" data-target="#profile">
+                <i class="fa-solid fa-user"></i>
+            </button>
+        </div>
+        <div class = "tabinator">
+           
+            
+            <div class="tab1" style="background-color: #D1D5FA;top:-12px; z-index: 5;">
+              <a style="color:#000" th:href="@{/account/inbox}">Inbox</a>
+            </div>
+
+			<div class="tab2"><a th:href="@{/account/dashboard}">Dashboard</a></div>
+
+			<div class="tab3"><a th:href="@{/account/otForm}">OT Form</a></div>
+
+			<div class="tab4"><a th:href="@{/account/myOtList}">OT List</a></div>
+
+			<div class="tab5"><a th:href="@{/account/history}">History</a></div>
+            
+        </div>
+    </div>
+    
+    <!--User Profile Modal -->
+	<div class="modal fade" id="profile" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="width: 500px;">
+		<div class="modal-content">
+			<div class="modal-header">
+			    <h4 class="modal-title" id="myModalLabel" style="color:#5c6898;">User Profile</h4>
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span> 
+					<span class="sr-only" th:text="#{btn.close}"></span>
+				</button>
+			</div>
+			<div class="modal-body profile-body" th:if="${memberDetails}!=null">
+
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label"
+							id="profileData">Staff ID : </label>
+						<div class="col-sm-6">
+							<p th:text="${memberDetails.memberStaffId}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label" id="profileData" >Name : </label>
+						<div class="col-sm-6">
+							<p th:text="${memberDetails.memberName}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label"
+							id="profileData">Position : </label>
+						<div class="col-sm-6">
+							<p th:text="${memberDetails.memberPositionName}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label"
+							id="profileData">Team : </label>
+						<div class="col-sm-6">
+							<div th:each = "memberTeamInfo : ${memberTeamInfoList}">
+							  <p th:text="${memberTeamInfo.memberTeamName}" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label"
+							id="profileData">Project ID : </label>
+						<div class="col-sm-6">
+							<p th:text="${memberDetails.memberProjectCode}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label"
+							id="profileData">Old Signature : </label>
+						<div class="col-sm-6">
+							<img th:src="@{${teamStructure.photosImagePath}}"
+								style="width: 100px; height: 100px;" alt="#signature"/>
+						</div>
+					</div>
+					<br>
+					<div class="form-group row">
+						<div class="col-md-6">
+							<a href="LGN002.html" class="btn btn-yellow">upload</a><br><br>
+						</div>
+					</div>
+					<p style="margin:10px 5px">
+						If you want to make your own signature <a href="#">click here</a> .</p>
+	     </div>
+       </div>
+     </div>
+   </div>
+
+    <div id = "content1" style="background-color:#D1D5FA">
+      <!-- Error Message -->
+	  <div th:if="${message}!=null"
+			class="alert alert-warning alert-dismissible fade show" role="alert">
+			<strong><p th:text="${message}" /></strong>
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+	  </div>
+	  <div class = "container">
+        <table class="table-striped">
+            <tr>
+                <th>
+                </th>
+                <th>
+                    Project ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    OT Date
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Remark
+                </th>
+                <th>
+                    <div class="search-container">
+                        <nav class="navbar navbar-light">
+                            <form class="custom">
+                                <input class="form-control search-inbox" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <button class="btn btn-outline-success btn-search" type="submit"><i
+                                        class="fa fa-magnifying-glass"></i></button>
+                            </form>
+                        </nav>
+                    </div>
+                </th>
+            </tr>
+            <tr class="style" th:each = "inboxInfo : ${inboxList}">
+                <td class="revise">
+                    <p>New</p>
+                </td>
+                <td width="150px">
+                    <p th:text = "${inboxInfo.projectId}" />
+                </td>
+                <td width="200px">
+                    <p th:text = "${inboxInfo.createUser}" />
+                </td>
+                <td width="150px">
+                    <p th:text = "${inboxInfo.otDate}" />
+                </td>
+                <td class="revise" width="150px">
+                    <p th:text = "${inboxInfo.status}" />
+                </td>
+                <td width="500px">
+                    <p th:text = "${inboxInfo.reason}" />
+                </td>
+                <td width="400px" align="center">
+                    <a th:href="@{/account/requestFormView(id=${inboxInfo.formId})}"
+                     class="btn btn-blue" target = "_blank">Preview</a>
+                    <a th:href="@{/account/approvalFormView(id=${inboxInfo.formId})}" 
+                     class="btn btn-yellow">Response</a>     
+                </td>
+            </tr>
+        </table>
+      </div>
+      <!-- pagination -->
+	  <div class="pagination">
+		<ul class="nav nav-pills"
+			th:if="${inboxListTotalPages}!=null">
+			<li class="nav-item"
+				th:each="i : ${#numbers.sequence(0,inboxList.totalPages-1)}">
+				<a th:href="@{/account/inbox(page=${i})}" th:text="${i+1}"
+				class="nav-link" th:classappend="${currentPage}==${i}?'active':''"></a>
+			</li>
+		</ul>
+	 </div>
+    </div>
+</main>
+</body>
+</html>

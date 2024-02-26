@@ -1,0 +1,157 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    /*width: fit-content;*/
+    background:transparent;
+    background-color: #f3f3f3;
+    overflow: hidden;
+}
+
+#content1,
+#content4{
+    position:relative;
+    top:-35px;
+    padding: 6px 0px;
+    border-radius: 20px;
+    margin:0 10px;
+    z-index: 6;
+    transition:all 0.5s;
+}
+
+table{
+    width:100%;
+    position: relative;
+    color:#000;
+}
+
+.profile-body {
+	margin-left:50px;
+}
+
+.container{
+	max-width: 1450px;
+}
+
+table th{
+    color: #fff;
+    position: sticky;
+    top: -1px;
+    background-color: #337ab7;
+    text-align: center;
+}
+
+.custom {
+	display: flex;
+	flex-direction: row;
+	width: 200px;
+}
+
+td{
+   padding:20px 5px 20px 30px;
+   text-align: center; 
+}
+
+.search-inbox {
+	width: 100%;
+}
+
+table .req{
+    color:#0a1bff;
+}
+
+table .revise{
+    color:rgb(255, 0, 0);
+}
+
+.btn{
+    margin-right: 10px;
+}
+
+/* ------------ my ot list location box ------------- */
+
+.loc-container{
+    display:flex;
+}
+.loc-box{
+    width:200px;
+    margin:0 5px;
+}
+.loc-role{
+    display:flex;
+}
+.loc-role i{
+    font-size: 25px;
+    margin-right:5px;
+}
+.loc-status{
+    display:flex;
+}
+.loc-status i{
+    margin:0 10px;
+}
+.loc-role p{
+    background-color: #3d3d3d;
+    color:#fff;
+    border-radius: 20px 20px 0px 20px;
+    padding:0px 10px; 
+    width:200px;
+}
+
+.loc-status{
+    background-color: #3d3d3d;
+    color:#00FF19;
+    border-radius: 0px 0px 10px 10px;
+    padding:0px; 
+    width:200px;
+    margin-top: -6px;
+    height:25px;
+}
+
+.return-ot{
+    color:#E2FF2F;
+}
+
+.loc-form{
+    background-color: #3d3d3d;
+    color:#fff;
+    border-radius: 5px 5px 5px 5px;
+    width:150px;
+    margin-bottom: -10px;
+}
+
+.loc-date{
+    background-color: #3d3d3d;
+    color:#fff;
+    border-radius: 5px 5px 5px 5px;
+    padding:0px; 
+    width:150px;
+    margin-top: -6px;
+    height:25px;
+}
+
+.fod .loc-box{
+    margin:0;
+    width:150px;
+}
+
+.loc-name {
+	background-color: #3d3d3d;
+    color:#00FF19;
+    border-radius: 0px 10px 0px 0px;
+    padding:0px; 
+    width:200px;
+    margin-top: -6px;
+    height:25px;
+}
+
+.loc-name p {
+	text-align: left;
+	margin-left: 35px;
+}
+
+@media(max-width: 1347px){
+	.content4{
+		overflow: scroll;
+	}
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/main :: layout(~{::main})}">
+<head>
+</head>
+<body>
+<main role="main">
+	<!-- Pre loader -->
+    <div id="preloader2">
+        <div id="status2">&nbsp;</div>
+    </div>
+    <div id="inbox-page">
+        <div id="inbox-page">
+            <div class="home-box">      
+              <a th:href="@{/home}"><i class="fa-solid fa-house"></i></a>
+          
+              <a href="javascript: document.logoutForm.submit()"><i class="fa-solid fa-power-off"></i></a>
+              
+              <form name="logoutForm" method="post" th:action="@{/logout}" th:hidden="true">
+              	<input hidden type="submit" value="Sign Out">
+              </form>
+			</div>
+        </div>
+        <div class="tabinator">
+
+
+            <div for="tab1" class="tab1"><a th:href="@{/admin/dashboard}">Dashboard</a></div>
+
+
+            <div for="tab1" class="tab2"><a th:href="@{/admin/teamMember}">Team Members</a></div>
+
+
+            <div for="tab1" class="tab3"><a th:href="@{/admin/management}">Management</a></div>
+
+
+            <div for="tab1" class="tab4"><a th:href="@{/admin/upload}">Upload Data</a></div>
+
+
+            <div for="tab1" class="tab5" style="background-color: #D1D5FA;top:-12px;z-index: 5;"><a style="color:#000" th:href="@{/admin/insertData}">Insert Data</a></div>
+
+        </div>
+    </div>
+    <div id="content4" style="background-color:#D1D5FA">
+    	
+    	<!-- Error Message -->
+		<div th:if="${message}!=null"
+			class="alert alert-warning alert-dismissible fade show" role="alert">
+			<strong><p th:text="${message}" /></strong>
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+			
+         <div class="insert-open" onclick="insertDrop()">Project Insert &nbsp;&nbsp;<i class="fa-solid fa-angle-down"></i></div>
+         <div class="insert-drop">
+             <div class="insert-link"><a th:href="@{/admin/insertData}">Employee Data</a></div>
+             <div class="insert-link"><a th:href="@{/admin/team}">Team Insert</a></div>
+             <div class="insert-link"><a th:href="@{/admin/position}">Position Insert</a></div>
+             <div class="insert-link"><a th:href="@{/admin/otrule}">OT Rule Insert</a></div>
+         </div>
+            
+    	<div class="insert-container container">
+    	<div class="row">
+    		<div class="col-md-3">
+    			<h5>Project Insert</h5>
+    			<form th:action="@{/admin/projectInsert}" method="post" th:object="${projectBean}">
+    				<div class="first-input-box-group">
+			            <div class="emp-data form-group">
+			                <div>Project Code</div>
+			                <input type="text" name="projectCode" id="projectCode" class="form-control" th:field="*{projectCode}" required>
+			            </div>
+			         </div><br>   
+			        <div class="emp-button">
+			            <button class="btn btn-yellow" name="submit" type="submit">Submit</button>
+			            <button class="btn btn-red" name="cancel" type="reset">Cancel</button>
+			        </div>
+    			</form>
+    		</div>
+    		<div class="col-md-9" style="height:395px; overflow-y:auto;">
+               	<h5 class="teamTitle">Existing Projects List</h5>
+                   <table class="table table-striped">
+                       <thead class="thead-info teamHead">
+                           <tr>
+                               <th>Id</th>
+                               <th>Project Code</th>
+                               <th></th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr th:each="project:${projectList}" class="style1">
+                               <td>
+                               	<p th:utext="${projectStat.index+1}"/>
+                               </td>
+                               <td>
+                               	<p th:text="${project.projectCode}"/>
+                               </td>
+                               <td>
+                               	<a th:href="@{findProject/(id=${project.projectId})}" class="updatebtn projectEdit" style="padding-right:20px;">
+                 						 	<i class="fa-solid fa-file-pen updatebtn"></i></a>
+              						<a th:href="@{findProject/(id=${project.projectId})}" class="updatebtn projectDelete">
+                  						<i class="fa-solid fa-trash-can trashbtn"></i></a>
+                  						
+       				<!-- Update Modal-->
+       				<div class="myFormProject">
+	                    <div class="modal fade" id="updateformProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	                        aria-hidden="true">
+	                        <div class="modal-dialog modal-dialog-centered" role="document" style="width: 500px;">
+	                            <div class="modal-content">
+	                                <div class="modal-body">
+	                                     <h5 class="modal-title" id="approvaltitle">Update Project Name</h5>
+	                                     <br>
+	                                     <form th:action="@{/admin/projectUpdate}" method="post" th:object="${projectBean}">
+		                                        <div class="form-group row">
+		                                            <label for="projectCode" class="col-sm-4 col-form-label" id="projectCode">Project Code -</label>
+		                                            <div class="col-sm-6">
+		                                            	<input type="hidden" id="projectId" name="projectId" value="" th:field="*{projectId}"/>
+		                                            	<input type="hidden" id="projectCheck" name="projectCheck" value="" th:field="*{projectCheck}"/>
+		                                                <input type="text" class="form-control" id="projectCode" name="projectCode" th:field="*{projectCode}" placeholder="Enter Project Code" required>
+		                                                <label th:if="${#fields.hasErrors('projectCode')}" th:errors="*{projectCode}" style="color:red;">Error</label>
+		                                            </div>
+		                                        </div>
+												<br>
+		                                        <div class="form-group row">
+		                                            <label for="remark" class="col-sm-4 col-form-label"></label>
+		                                            <div class="col-sm-6">
+		                                                <button type="submit" class="btn btn-yellow" th:text="Update"/></button>
+		                                                <button type="button" class="btn btn-home" data-dismiss="modal" th:text="Cancel"></button>
+		                                            </div>
+		                                        </div>
+		                                   </form>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	              	 </div>
+	                 <!-- Update Modal-->
+	                 
+	                 <!-- Delete Modal -->
+	                 	<div class="myDelFormProject">
+							<form th:action="@{/admin/projectDelete}" method="post" th:object="${projectBean}">
+								<div class="modal fade" id="deleteformProject" tabindex="-1" role="dialog"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document"
+									id="modalsize" style="width: 400px;">
+									<div class="modal-content">
+										<div class="modal-body">
+			
+											<h5 class="modal-title" id="deletetitle">Delete Project? Are you sure?</h5>
+											<br> 
+											<input type="hidden" id="projectId" name="projectId" value="" th:field="*{projectId}"/>
+	                                        <input type="hidden" id="projectCheck" name="projectCheck" value="" th:field="*{projectCheck}"/>
+											<input type="text" class="form-control" id="projectCode" name="projectCode" th:field="*{projectCode}" value="" readonly="readonly">
+											<div class="form-group row modal-footer">
+												<div class="col-sm-12" style="text-align: center;">
+													<button type="submit" class="btn btn-red" id="delModal"
+														name="submit" th:text="Delete"></button>
+													<button type="button" class="btn btn-home"
+														data-dismiss="modal" th:text="Close"></button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								</div>
+							</form>
+						</div>
+	                 <!-- Delete Modal -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    	</div>
+      	</div>
+    </div>
+</main>
+    
+</body>
+
+</html>

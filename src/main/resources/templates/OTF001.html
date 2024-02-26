@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/otForm :: layout(~{::main})}">
+<head>
+</head>
+<body style = "padding-right : 0px;">
+<main role="main">
+	<!-- Pre loader -->
+	<div id="preloader2">
+		<div id="status2">&nbsp;</div>
+	</div>
+	<div id="inbox-page">
+		<div class="home-box">
+            
+            <a th:href="@{/home}"><i class="fa-solid fa-house"></i></a>
+        
+            <a href="javascript: document.logoutForm.submit()"><i class="fa-solid fa-power-off"></i></a>
+
+            <form name="logoutForm" method="post" th:action="@{/logout}" th:hidden="true">
+              	<input hidden type="submit" value="Sign Out">
+            </form>
+            
+            <button type="button" class="profile" data-toggle="modal" data-target="#profile">
+				<i class="fa-solid fa-user"></i>
+			</button>
+        </div>
+		<div class="tabinator">
+
+			<div class="tab1"><a th:href="@{/account/inbox}">Inbox</a></div>
+
+			<div class="tab2"><a th:href="@{/account/dashboard}">Dashboard</a></div>
+
+			<div class="tab3" style="background-color: #D1D5FA;top:-12px;z-index: 5;">
+			<a style="color:#000" th:href="@{/account/otForm}">OT Form</a>
+			</div>
+
+			<div class="tab4"><a th:href="@{/account/myOtList}">My OT List</a></div>
+
+			<div class="tab5"><a th:href="@{/account/history}">History</a></div>
+
+		</div>
+	</div>
+
+	<!--User Profile Modal-->
+	<div class="modal fade" id="profile" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document"
+		style="width: 500px;">
+		<div class="modal-content">
+			<div class="modal-header">
+			    <h4 class="modal-title" id="myModalLabel" style="color:#5c6898;">User Profile</h4>
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span> 
+					<span class="sr-only" th:text="#{btn.close}"></span>
+				</button>
+			</div>
+			<div class="modal-body profile-body" th:if="${memberDetails}!=null">
+
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label"
+							id="profileData">Staff ID : </label>
+						<div class="col-sm-6">
+							<p th:text="${memberDetails.memberStaffId}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label" id="profileData" >Name : </label>
+						<div class="col-sm-6">
+							<p th:text="${memberDetails.memberName}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label"
+							id="profileData">Position : </label>
+						<div class="col-sm-6">
+							<p th:text="${memberDetails.memberPositionName}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label"
+							id="profileData">Team : </label>
+						<div class="col-sm-6">
+							<div th:each = "memberTeamInfo : ${memberTeamInfoList}">
+							  <p th:text="${memberTeamInfo.memberTeamName}" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label"
+							id="profileData">Project ID : </label>
+						<div class="col-sm-6">
+							<p th:text="${memberDetails.memberProjectCode}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label"
+							id="profileData">Old Signature : </label>
+						<div class="col-sm-6">
+							<img th:src="@{${teamStructure.photosImagePath}}"
+								style="width: 100px; height: 100px;" />
+						</div>
+					</div>
+					<br>
+					<div class="form-group row">
+						<div class="col-md-6">
+							<a href="LGN002.html" class="btn btn-yellow">upload</a><br><br>
+						</div>
+					</div>
+					<p style="margin:10px 5px">
+						If you want to make your own signature <a href="#">click here</a> .</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<div id="content3" style="background-color:#D1D5FA">
+	  <!-- Error Message -->
+	  <div th:if="${message}!=null"
+			class="alert alert-warning alert-dismissible fade show" role="alert">
+			<strong><p th:text="${message}" /></strong>
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+	  </div>
+		<div class="container">
+			<div class="btn-group">
+				<a href="OTF002.html" class="btn btn-yellow" name="switch">Project Form</a>
+			</div>
+			<div class="btn-group">
+				<select class="custom-select" id="inputGroupSelect01">
+					<option selected>Draft Files</option>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+				<button class="btn-home btn-sm">open</button>
+			</div>
+			
+		<form th:action="@{/account/otForm/uploadForm}" method="post" th:object = "${otFormBean}" enctype = "multipart/form-data" >
+		
+			<!--OT form send Box Modal -->
+			<div class="modal fade" id="approvalform" tabindex="-1"
+				role="dialog" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document"
+					style="width: 500px;">
+					<div class="modal-content">
+						<div class="modal-body">
+
+							<h5 class="modal-title" id="approvaltitle">Sent OT Form</h5>
+							
+							<!--<div class="form-group row">
+								<label for="sendTo" class="col-sm-4 col-form-label"
+									id="textalignsendto">Sent to -</label>
+								<div class="col-sm-6">
+									<select class="sendto form-control" data-live-search="true"
+										th:field="*{sentTo}">
+										<option value="none" label="Choose People..." />
+										<option th:each="name : ${finalNameList}"
+											th:value="${name.staffId}" th:text="${name.name}" />
+									</select> <label th:if="${#fields.hasErrors('sentTo')}"
+										th:errors="*{sentTo}" style="color: red;">Error</label>
+								</div>
+							</div>-->
+
+						   <div class="form-group row">
+							 <label for="signature" class="col-sm-4 col-form-label sign">
+								Signature -</label>
+							 <div class="col-sm-6">
+								<input type="file" name="file" class="form-control-file"
+								  id="signature" accept="image/png">
+							 </div>
+						   </div>
+						   <div class="form-group row image-div">
+								<!--  <div class="image-div">
+									<div><br>
+										<img src="" alt="" id="thumbnail"><br>
+									</div>
+									<!-- updated signature display
+									<div class="image-in">
+										<p>Old Signature</p>
+										<img th:src="@{${teamStructure.photosImagePath}}" />
+									</div>
+								</div>-->
+							  <label class="col-sm-4 col-form-label"></label>
+							  <div class="col-sm-6">
+								<img src="" alt="#new-signature" id="thumbnail">
+							  </div>
+							</div>
+							<div class="form-group row image-div">
+							  <label class="col-sm-4 col-form-label">
+								Old Signature -</label>
+							  <div class="col-sm-6">
+								<img th:src="@{${teamStructure.photosImagePath}}" />
+							  </div>
+							</div>
+                            <br>
+							<div class="form-group row">
+								<label for="remark" class="col-sm-4 col-form-label"></label>
+								<div class="col-sm-6">
+									<button type="submit" class="btn btn-yellow" name = "button" value = "submit">Submit</button>
+									<button type="button" class="btn btn-home" data-dismiss="modal">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+					
+			<table id = "otFormTable">
+				<tr>
+					<th colspan="3">OT Form</th>
+				</tr>
+				<tr>
+					<td>
+						<label for = "projectId">Project ID</label><br>
+						<select class="form-control" id="projectId" name = "projectId" th:field = "*{projectId}" required>
+							<option value = "">Choose...</option>
+							<option th:each = "p:${projectList}" th:value="${p.value}" th:text = "${p.key}"/>
+						</select>
+						<label th:if="${#fields.hasErrors('projectId')}"
+							th:errors="*{projectId}" style="color: red;">Error</label>
+					</td>
+					<td colspan="2"><br>
+						<label for = "reason">Task(reason)</label><br>
+						<textarea class="form-control" rows="3" id = "reason" name = "reason" th:field = "*{reason}" required></textarea>
+					    <label th:if="${#fields.hasErrors('reason')}"
+							th:errors="*{reason}" style="color: red;">Error</label>
+					</td>
+				</tr>
+				<tr>
+					<th colspan="3"><br><br>OT Date and Time</th>
+				</tr>
+				<tr>
+					<td>
+						<label for = "otDate">Date</label><br>
+						<input name="otDate" id = "datepicker" th:field = "*{otDate}" class="inputStyle otDateInput" required>
+					    <label th:if="${#fields.hasErrors('otDate')}"
+							th:errors="*{otDate}" style="color: red;">Error</label>
+					</td>
+					<td>
+						<label for = "planStartHr">Plan Start Hour</label><br>
+						<input type="time" name="planStartHr" id = "planStartHr" th:field = "*{planStartHr}" class="inputStyle form-control" required>
+					    <label th:if="${#fields.hasErrors('planStartHr')}"
+							th:errors="*{planStartHr}" style="color: red;">Error</label>
+					</td>
+					<td>
+						<label for = "planFinishHr">Plan Finish Hour</label><br>
+						<input type="time" name="planFinishHr" id = "planFinishHr" th:field = "*{planFinishHr}" class="inputStyle form-control" required>
+					    <label th:if="${#fields.hasErrors('planFinishHr')}"
+							th:errors="*{planFinishHr}" style="color: red;">Error</label>
+					</td>
+					<td>
+						<label for = "planTotalHour">Plan Total Hour</label><br>
+						<input type="text" name="planTotalHour" id = "planTotalHour" th:field = "*{planTotalHour}" class="inputStyle form-control" required>
+					    <label th:if="${#fields.hasErrors('planTotalHour')}"
+							th:errors="*{planTotalHour}" style="color: red;">Error</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for = "day">Day</label><br>
+						<select class="inputStyle form-control" id = "day" name = "day" th:field = "*{day}" required>
+							<option value = "">Choose...</option>
+							<option th:value = "weekday">Weekday</option>
+							<option th:value = "weekend">Weekend</option>
+							<option th:value = "holiday">Holiday</option>
+						</select>
+						<label th:if="${#fields.hasErrors('day')}"
+							th:errors="*{day}" style="color: red;">Error</label>
+					</td>
+					<td>
+						<label for = "actualStartHr">Actual Start Hour</label><br>
+						<input type="time" name="actualStartHr" id = "actualStartHr" th:field = "*{actualStartHr}" class="inputStyle form-control" required>
+					    <label th:if="${#fields.hasErrors('actualStartHr')}"
+							th:errors="*{actualStartHr}" style="color: red;">Error</label>
+					</td>
+					<td>
+						<label for = "actualFinishHr">Actual Finish Hour</label><br>
+						<input type="time" name="actualFinishHr" id = "actualFinishHr" th:field = "*{actualFinishHr}" class="inputStyle form-control" required>
+					    <label th:if="${#fields.hasErrors('actualFinishHr')}"
+							th:errors="*{actualFinishHr}" style="color: red;">Error</label>
+					</td>
+					<td>
+						<label for = "actualTotalHour">Actual Total Hour</label><br>
+						<input type="text" name="actualTotalHour" id = "actualTotalHour" th:field = "*{actualTotalHour}" class="inputStyle form-control" required>
+					    <label th:if="${#fields.hasErrors('actualTotalHour')}"
+							th:errors="*{actualTotalHour}" style="color: red;">Error</label>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<div><br>
+							<button type="button" class="btn btn-blue" data-toggle="modal"
+						     data-target="#approvalform">Apply</button>
+
+							<button type="reset" class="btn btn-red">Cancel</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</form>
+		</div>
+	</div>	
+</main>
+</body>
+</html>

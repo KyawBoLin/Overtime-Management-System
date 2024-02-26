@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/requestForm :: layout(~{::main})}">
+<head>
+</head>
+<body style = "padding-right: 0px;">
+<main role="main">
+	<!-- Pre loader -->
+    <div id="preloader2">
+        <div id="status2">&nbsp;</div>
+    </div>
+    <div id="reportView">
+        <div class="container-fluid reportContainer">
+            <h4>Overtime Request Form</h4>
+
+            <!-- Modal download -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Download</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body pdf-and-excel">
+                            <a href="#">
+                                <img src="../resources/icon-pdf-16.jpg" alt="pdf-icon">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="report-button-box">
+              <div>
+                <div class = "form-group row" style = "width:500px">
+                  <label for="projectId" class="col-form-label">
+					Project ID : -</label>
+                  <div class = "col-sm-9" style = "margin-top:6px">
+                      <p th:text="${formInfo.projectId}" />
+                  </div>
+                </div>
+                <div class = "form-group row">
+                  <label for="formId" class="col-form-label">
+					Form ID : -</label>
+                  <div class = "col-sm-2" style = "margin-top:6px">
+                    <p th:text="${formInfo.formId}" />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <!-- Button trigger modal -->
+                <button type="button" class="download" data-toggle="modal" data-target="#exampleModalCenter"
+                  name="download"><i class="fa-solid fa-file-arrow-down bounce"></i></button>
+              </div>
+            </div>
+            <div class="report-table-container">
+                <table class="table table-bordered plan-first-table">
+                    <tr>
+                        <td>
+                            <p>Sr.No</p>
+                        </td>
+                        <td>
+                            <p>Task(Reason)</p>
+                        </td>
+                        <td>
+                            <p>Assign To (With Staff ID)</p>
+                        </td>
+                        <td>
+                            <table class="table plan-table">
+                                <tr>
+                                    <p>Planned Date and Time</p>
+                                </tr>
+                                <tr class="each-cell">
+                                    <td class="date">
+                                        <p>Date</p>
+                                    </td>
+                                    <td class="hr">
+                                        <p>Start Hour</p>
+                                    </td>
+                                    <td class="hr">
+                                        <p>Finish Hour</p>
+                                    </td>
+                                    <td class="thr">
+                                        <p>Total Hour</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td></td>
+                        <td>
+                            <table class="table plan-table">
+                                <tr>
+                                    <p>Actual Date and Time</p>
+                                </tr>
+                                <tr class="each-cell">
+                                    <td class="date">
+                                        <p>Date</p>
+                                    </td>
+                                    <td class="hr">
+                                        <p>Start Hour</p>
+                                    </td>
+                                    <td class="hr">
+                                        <p>Finish Hour</p>
+                                    </td>
+                                    <td class="thr">
+                                        <p>Total Hour</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <p>Range</p>
+                        </td>
+                    </tr>
+                    <tr class="ot-row">
+                        <td>
+                            <p>1</p>
+                        </td>
+                        <td>
+                            <p th:text="${formInfo.reason}" />
+                        </td>
+                        <td>
+                            <p th:text="${formInfo.updateUser}" />
+                        </td>
+                        <td>
+                            <table class="table plan-table-result">
+                                <tr class="each-cell">
+                                    <td class="date">
+                                        <p th:text="${formInfo.otDate}" />
+                                    </td>
+                                    <td class="hr">
+                                        <p th:text="${formInfo.planStartHr}" />
+                                    </td>
+                                    <td class="hr">
+                                        <p th:text="${formInfo.planFinishHr}" />
+                                    </td>
+                                    <td class="thr">
+                                        <p th:text="${formInfo.planTotalHour}" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <p th:text="${formInfo.day}" />
+                        </td>
+                        <td>
+                            <table class="table plan-table-result">
+                                <tr class="each-cell">
+                                    <td class="date">
+                                        <p th:text="${formInfo.otDate}" />
+                                    </td>
+                                    <td class="hr">
+                                        <p th:text="${formInfo.actualStartHr}" />
+                                    </td>
+                                    <td class="hr">
+                                        <p th:text="${formInfo.actualFinishHr}" />
+                                    </td>
+                                    <td class="thr">
+                                        <p th:text="${formInfo.actualTotalHour}" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <p th:text="${formInfo.payment}" />
+                        </td>
+                    </tr>
+                </table>
+                <table class="approval-data">
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <h6>REQUESTED BY</h6>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Name :</p>
+                                    </td>
+                                    <td>
+                                        <p th:text="${formInfo.createUser}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Date :</p>
+                                    </td>
+                                    <td>
+                                        <p th:text="${createDate}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Signature :</p>
+                                    </td>
+                                    <td th:if="${formInfo.signature}!=null">
+                                        <img th:src="@{${formInfo.photosImagePath}}"
+								          style="width: 80px; height: 60px;" />
+                                    </td>
+                                    <td th:if="${formInfo.signature}==null">
+                                        <p>..............................</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Status :</p>
+                                    </td>
+                                    <td>
+                                        <p th:text = "${formInfo.status} ? ${formInfo.status} : '..............................'" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <h6>APPROVAL</h6>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Project Manager : </p>
+                                    </td>
+                                    <td>
+                                        <p th:text = "${projectManager} ? ${projectManager.name} : '..............................'" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Date :</p>
+                                    </td>
+                                    <td>
+                                        <p th:text = "${updateDate} ? ${updateDate} : '..............................'" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Signature :</p>
+                                    </td>
+                                    <td th:if="${projectManager.photosImagePath}!=null">
+                                        <img th:src="@{${projectManager.photosImagePath}}"
+								          style="width: 80px; height: 60px;" />
+                                    </td>
+                                    <td th:if="${projectManager.photosImagePath}==null">
+                                        <p>..............................</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Status :</p>
+                                    </td>
+                                    <td>
+                                        <p th:text = "${projectManager} ? 'Pass' : '..............................'" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <h6>APPROVAL</h6>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Department Head : </p>
+                                    </td>
+                                    <td>
+                                        <p th:text = "${departmentHead} ? ${departmentHead.name} : '..............................'" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Date :</p>
+                                    </td>
+                                    <td>
+                                        <p th:text = "${updateDate} ? ${updateDate} : '..............................'" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Signature :</p>
+                                    </td>
+                                    <td th:if="${departmentHead.photosImagePath}!=null">
+                                        <img th:src="@{${departmentHead.photosImagePath}}"
+								          style="width: 80px; height: 60px;" />
+                                    </td>
+                                    <td th:if="${departmentHead.photosImagePath}==null">
+                                        <p>..............................</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Status :</p>
+                                    </td>
+                                    <td>
+                                        <p th:text = "${departmentHead} ? 'Pass' : '..............................'" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <h6>APPROVAL</h6>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Division Head : </p>
+                                    </td>
+                                    <td>
+                                        <p th:text = "${divisionHead} ? ${divisionHead.name} : '..............................'" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Date :</p>
+                                    </td>
+                                    <td>
+                                        <p th:text = "${updateDate} ? ${updateDate} : '..............................'" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Signature :</p>
+                                    </td>
+                                    <td th:if="${divisionHeadSignature.photosImagePath}!=null">
+                                        <img th:src="@{${divisionHead.photosImagePath}}"
+								          style="width: 80px; height: 60px;" />
+                                    </td>
+                                    <td th:if="${divisionHeadSignature.photosImagePath}==null">
+                                        <p>..............................</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Status :</p>
+                                    </td>
+                                    <td>
+                                        <p th:text = "${divisionHead} ? 'Pass' : '..............................'" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <h6>- OFFICE USE ONLY -</h6>
+                <table class="office-use">
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <h6>HR Services</h6>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Recorded Date :</p>
+                                    </td>
+                                    <td>
+                                        <p>......................................</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Signature :</p>
+                                    </td>
+                                    <td>
+                                        <p>......................................</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <h6>Finance</h6>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Cash Payment Date :</p>
+                                    </td>
+                                    <td>
+                                        <p>......................................</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Signature :</p>
+                                    </td>
+                                    <td>
+                                        <p>......................................</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <h6>Cash Received</h6>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Received Date :</p>
+                                    </td>
+                                    <td>
+                                        <p>......................................</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Signature :</p>
+                                    </td>
+                                    <td>
+                                        <p>......................................</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
